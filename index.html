@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Palace</title>
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
@@ -25,7 +27,26 @@
     </div>
 
     <div id="search-bar-page">
-        
+        <div id="search-bar-container">
+            <div id="search">
+                <input type="text" id="search-bar" placeholder="Search Meal">
+                <div id="search-icon">
+                    <img id="search-img" src="./assets/icons/search.png" alt="">
+                </div>
+            </div>
+
+            <ul id="suggestion-list">
+                <!-- <li class="suggestion-list-item">
+                    <div class="food-img">
+                        <img src="./assets/images/food mix.jpg" alt="">
+                    </div>
+                    <div class="food-text">
+                        Pizza
+                    </div>
+                </li> -->
+            </ul>
+        </div>
+
     </div>
 
 
@@ -62,60 +83,80 @@
 
         </navbar>
 
-            <div id="home-page">
-                <div id="home-details">
-                    <!-- Background Home Image -->
-                    <div id="page-heading">
-                        Let's Cook Something...
-                    </div>
-                    <div id="quote">
-                        Where there is food there is Love.
-                    </div>
-                    <div id="search-meal-btn">
-                        Search Meals
-                    </div>
+        <div id="home-page">
+            <div id="home-details">
+                <!-- Background Home Image -->
+                <div id="page-heading">
+                    Let's Cook Something...
                 </div>
-
+                <div id="quote">
+                    Where there is food there is Love.
+                </div>
+                <div id="search-meal-btn">
+                    Search Meals
+                </div>
             </div>
+        </div>
 
-        <footer id="footer">
-            <div id="about-me">
-            <div id="name">
-                Ashis Kumar Yadav
+        <div id="favourite-section">
+            <div id="favourite-heading">
+                Favourite
             </div>
-                Front End Developer & UI Designer
-            <ul id="connect-list">
-                <li class="connect-list-icons">
-                    <a href="">
-                        <img class="link-img" src="./assets/icons/instagram.png" alt="">
-                    </a>
-                </li>
-                
-                <li class="connect-list-icons">
-                    <a href="">
-                        <img class="link-img" src="./assets/icons/facebook.png" alt="">
-                    </a>
-                </li>
-                
-                <li class="connect-list-icons">
-                    <a href="https://github.com/WebGuyAshis">
-                        <img class="link-img" src="./assets/icons/github (2).png" alt="">
-                    </a>
-                </li>
-                
-                <li class="connect-list-icons">
-                    <a href="">
-                        <img class="link-img" src="./assets/icons/gmail.png" alt="" >
-                    </a>
-                </li>
-                
-                <li class="connect-list-icons">
-                    <a href="https://www.linkedin.com/in/developer-ashis-yadav-046b26237">
-                        <img class="link-img" src="./assets/icons/linkedin.png" alt="">
-                    </a>
+            <ul id="favourite-list">
+                <li class="favourite-list-item">
+                    <img src="./assets/images/food mix.jpg" alt="">
+                    <div class="card-details">
+                        <span class="card-heading">
+                            Tasty Food
+                        </span>
+                        <div class="card-btn">
+                            recepie
+                            <i class="bi bi-heart-fill"></i>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
+
+
+        <footer id="footer">
+            <div id="about-me">
+                <div id="name">
+                    Ashis Kumar Yadav
+                </div>
+                Front End Developer & UI Designer
+                <ul id="connect-list">
+                    <li class="connect-list-icons">
+                        <a href="">
+                            <img class="link-img" src="./assets/icons/instagram.png" alt="">
+                        </a>
+                    </li>
+
+                    <li class="connect-list-icons">
+                        <a href="">
+                            <img class="link-img" src="./assets/icons/facebook.png" alt="">
+                        </a>
+                    </li>
+
+                    <li class="connect-list-icons">
+                        <a href="https://github.com/WebGuyAshis">
+                            <img class="link-img" src="./assets/icons/github (2).png" alt="">
+                        </a>
+                    </li>
+
+                    <li class="connect-list-icons">
+                        <a href="">
+                            <img class="link-img" src="./assets/icons/gmail.png" alt="">
+                        </a>
+                    </li>
+
+                    <li class="connect-list-icons">
+                        <a href="https://www.linkedin.com/in/developer-ashis-yadav-046b26237">
+                            <img class="link-img" src="./assets/icons/linkedin.png" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <div id="footer-text">
                 Proudly Developed by @WebGuyAshis 😉
             </div>

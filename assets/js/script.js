@@ -64,7 +64,7 @@ function handleClicks(event) {
     }
     else if(fetchId == 'search-meal-btn'){
         openSearchPage();
-    }else if(isSearchPageOpen && fetchId!= 'search-bar-page'){
+    }else if(isSearchPageOpen && fetchId != 'search-bar-page' && fetchId != 'search-bar'){
         closeSearchPage();
     }
 }
