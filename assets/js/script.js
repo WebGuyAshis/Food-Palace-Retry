@@ -2,9 +2,10 @@ const welcomePage = document.getElementById('welcome-page-container');
 const mainPage = document.getElementById('main-page-container');
 const footer = document.getElementById('footer');
 const aboutMe = document.getElementById('about-me');
+const searchPage = document.getElementById('search-bar-page');
 
 let isFooterOpen = false;
-
+let isSearchPageOpen = false;
 
 window.onload = function () {
     setTimeout(() => {
@@ -32,6 +33,20 @@ function closeFooter() {
     aboutMe.style.display = 'none'
 }
 
+// Opening Search Page
+function openSearchPage(){
+    searchPage.style.height = '70vh';
+    searchPage.style.width= '200%';
+    searchPage.style.borderBottomLeftRadius = "50%";
+    searchPage.style.borderBottomRightRadius = '50%';
+    isSearchPageOpen = true;
+}
+
+function closeSearchPage(){
+    searchPage.style.height = '0';
+    searchPage.style.width = '100vw';
+    isSearchPageOpen = false;
+}
 // Handle Clicks
 function handleClicks(event) {
     let target = event.target;
@@ -46,6 +61,11 @@ function handleClicks(event) {
      else if(fetchId != 'footer' && isFooterOpen){
         console.log('inside close');
         closeFooter();
+    }
+    else if(fetchId == 'search-meal-btn'){
+        openSearchPage();
+    }else if(isSearchPageOpen && fetchId!= 'search-bar-page'){
+        closeSearchPage();
     }
 }
 

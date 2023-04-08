@@ -20,6 +20,10 @@
 body{
     width: 100vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
 }
 /*Welcome Page  */
 #welcome-page-container{
@@ -48,7 +52,7 @@ body{
 
 .leavePage{
     animation: leavepage 1s linear forwards;
-    border-radius: 50%;
+    border-radius: 100px;
 }
 @keyframes leavepage{
     0%{
@@ -222,6 +226,19 @@ body{
     transition: 0.5s;
     color: aliceblue;
 }
+
+/* Search Bar Page */
+#search-bar-page{
+    position: absolute;
+    height: 0vh;
+    width: 100vw;
+    background-color: aqua;
+    z-index: 100;
+    transition: 0.5s;
+}
+
+
+
 
 
 /* footer */
