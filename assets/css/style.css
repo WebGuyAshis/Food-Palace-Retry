@@ -279,6 +279,8 @@ body {
     flex-direction: column;
     border-radius: 8px;
     overflow: hidden;
+    transition: 0.5s;
+    position: relative;
 }
 
 #search-bar-container:hover {
@@ -318,6 +320,11 @@ body {
 
 #suggestion-list {
     display: block;
+    /* display: none; */
+    position: absolute;
+    z-index: 5000;
+    width: 400px;
+    top: 40px;
 }
 
 .suggestion-list-item {
@@ -361,6 +368,7 @@ body {
     -webkit-backdrop-filter: blur(6.5px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
+    display: none;
 
 }
 
@@ -390,6 +398,8 @@ body {
     overflow: hidden;
     border-radius: 10px;
     transition: 0.5s;
+    box-shadow: 0 0 10px 2px rgb(93, 93, 93, 0.6);
+    margin: 10px;
 }
 
 .favourite-list-item::before {
@@ -410,8 +420,9 @@ body {
 .card-details{
     position: absolute;
     bottom: 0;
-    z-index: 10000;
+    z-index: 100;
     color: aliceblue;
+    width: 100%;
 }
 .card-heading{
     margin: 10px;
@@ -420,7 +431,8 @@ body {
 }
 .card-btn{
     /* background-color: antiquewhite; */
-    width: 190px;
+    /* width: 190px; */
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 15px;
@@ -476,4 +488,50 @@ footer {
     height: 100%;
     width: 100%;
     border-radius: 50%;
+    /* object-fit: cover; */
+}
+
+
+
+/* For making blur */
+.blur{
+    filter: blur(5px);
+}
+
+/* Food List */
+#food-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    display: none;
+    height: 80vh;
+    width: 100vw;
+    overflow-y: scroll;
+    align-content: flex-start;
+
+}
+.food-card{
+    /* flex: 1 0 0; */
+    position: relative;
+    height: 250px;
+    width: 30%;
+    min-width: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: 0.5s;
+    box-shadow: 0 0 10px 2px rgb(93, 93, 93, 0.6);
+    margin: 10px;
+}
+.food-card:before {
+    position: absolute;
+    bottom: 0;
+    content: '';
+    background: linear-gradient(transparent, black);
+    height: 60%;
+    width: 100%;
+}
+.food-card img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
