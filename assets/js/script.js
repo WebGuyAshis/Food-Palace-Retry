@@ -165,9 +165,9 @@ function removeSuggestions(){
 
 
 
-function showMeals(){
+// function showMeals(){
     
-    for(meal of dataArr){
+//     for(meal of dataArr){
 
-    }
-}
+//     }
+// }

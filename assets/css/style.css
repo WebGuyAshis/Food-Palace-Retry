@@ -255,6 +255,7 @@ body {
 /* Search Bar Page */
 #search-bar-page {
     position: absolute;
+    /* position: relative; */
     transition: 0.5s;
     display: flex;
     /* justify-content: center; */
@@ -268,19 +269,19 @@ body {
 }
 
 #search-bar-container {
-    /* position: absolute;
-    top: 25vh; */
     margin-top: 25vh;
     background-color: aqua;
     width: 400px;
-    /* height: 40px; */
     display: flex;
-
     flex-direction: column;
     border-radius: 8px;
     overflow: hidden;
     transition: 0.5s;
-    position: relative;
+    z-index: 10;
+    /* position: relative; */
+    /* background-color: aqua; */
+    /* position: absolute; */
+    /* z-index: ; */
 }
 
 #search-bar-container:hover {
@@ -321,19 +322,24 @@ body {
 #suggestion-list {
     display: block;
     /* display: none; */
-    position: absolute;
-    z-index: 5000;
+    /* position: absolute; */
+    /* height: 200px; */
+    /* z-index: 5000; */
+    /* z-index: 10; */
     width: 400px;
     top: 40px;
+    background-color: aqua;
 }
 
 .suggestion-list-item {
+    /* position: absolute; */
     overflow: hidden;
     background-color: aqua;
     display: flex;
     border-bottom: 0.5px solid rgb(155, 155, 155);
     align-items: center;
     padding: 2px;
+    /* z-index: 11111111; */
 }
 
 .food-img {
@@ -384,7 +390,6 @@ body {
 #favourite-list {
     height: 93vh;
     overflow: scroll;
-
 }
 
 ::-webkit-scrollbar {
@@ -508,7 +513,8 @@ footer {
     width: 100vw;
     overflow-y: scroll;
     align-content: flex-start;
-
+    position: absolute;
+    top: 12vh;
 }
 .food-card{
     /* flex: 1 0 0; */
