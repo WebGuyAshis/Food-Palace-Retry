@@ -13,9 +13,12 @@
 </head>
 
 <body>
-
+    <!-- Logo -->
+    <div id="logo">
+        @<span id="logo-first">W</span>ebGuyAshis
+    </div>
     <!-- Welcome Page -->
-    <div id="welcome-page-container">
+    <!-- <div id="welcome-page-container">
         <div id="welcome-text">
             Welcome to Food Palace!
         </div>
@@ -24,7 +27,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div id="search-bar-page">
         <div id="search-bar-container">
@@ -48,7 +51,7 @@
         </div>
 
         <ul id="food-container">
-            <li class="food-card">
+            <!-- <li class="food-card">
                 <img src="./assets/images/food mix.jpg" alt="">
                 <div class="card-details">
                     <span class="card-heading">
@@ -59,7 +62,7 @@
                         <i class="bi bi-heart-fill"></i>
                     </div>
                 </div>
-            </li>
+            </li> -->
         </ul>
     </div>
 
@@ -69,14 +72,13 @@
     <div id="main-page-container">
         <!-- NavBar -->
         <navbar id="nav">
-            <!-- Logo -->
-            <div id="logo">
-                <span>W</span>ebGuyAshis
-            </div>
             <!-- Navbar List -->
-            <ul id="nav-list">
+            <!-- <ul id="nav-list">
                 <li class="nav-list-items" id="home">
                     Home
+                </li>
+                <li class="nav-list-items" id="search-btn">
+                    Search
                 </li>
                 <li class="nav-list-items" id="Favourites">
                     Favourites
@@ -84,7 +86,26 @@
                 <li class="nav-list-items" id="contact-me">
                     Contact Me
                 </li>
-            </ul>
+            </ul> -->
+
+            <i class="bi bi-list" id="hamburger"></i>
+            <ul id="nav-list">
+                <li class="nav-list-items" id="home">
+                    Home
+                </li>
+                <li class="nav-list-items" id="search-btn">
+                    Search
+                </li>
+                <li class="nav-list-items" id="Favourites">
+                    Favourites
+                </li>
+                <li class="nav-list-items" id="contact-me">
+                    Contact Me
+                </li>
+            </ul> 
+
+
+            
             <!-- SignUp SignIn/Authentication -->
             <div id="authentication-btn">
                 <div id="sign-in" class="authenticate">
@@ -174,6 +195,8 @@
                 Proudly Developed by @WebGuyAshis 😉
             </div>
         </footer>
+
+        
     </div>
     <script src="/assets/js/script.js"></script>
 </body>

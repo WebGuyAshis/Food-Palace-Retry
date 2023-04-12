@@ -7,6 +7,8 @@ const searchBarContainer = document.getElementById('search-bar-container');
 const foodContainer = document.getElementById('food-container');
 const searchBar = document.getElementById('search-bar');
 const suggestionList = document.getElementById('suggestion-list');
+const navList = document.getElementById('nav-list');
+const hamburgerIcon = document.getElementById('hamburger');
 
 let dataArr = [];
 let suggestedData = [];
@@ -14,12 +16,12 @@ let suggestedData = [];
 let isFooterOpen = false;
 let isSearchPageOpen = false;
 
-window.onload = function () {
-    setTimeout(() => {
-        welcomePage.classList.add('leavePage');
-        mainPage.style.display = 'block';
-    }, 1100);
-}
+// window.onload = function () {
+//     setTimeout(() => {
+//         welcomePage.classList.add('leavePage');
+//         mainPage.style.display = 'block';
+//     }, 1100);
+// }
 
 function openFooter() {
     footer.style.height = '40vh';
@@ -29,6 +31,8 @@ function openFooter() {
     footer.style.backgroundColor = "rgb(255, 78, 14)";
     isFooterOpen = true;
     aboutMe.style.display = 'block'
+    document.getElementById('logo-first').style.color = 'green';
+    // navList.style.display = 'none';
 }
 
 function closeFooter() {
@@ -38,15 +42,18 @@ function closeFooter() {
     footer.style.backgroundColor = "rgb(38, 38, 38, 0.6)"
     isFooterOpen = false;
     aboutMe.style.display = 'none'
+    document.getElementById('logo-first').style.color = 'rgb(255, 78, 14)';
+
 }
 
 // Opening Search Page
 function openSearchPage() {
     searchPage.style.height = '70vh';
-    searchPage.style.width = '200%';
-    searchPage.style.borderBottomLeftRadius = "50%";
-    searchPage.style.borderBottomRightRadius = '50%';
+    // searchPage.style.width = '200%';
+    // searchPage.style.borderBottomLeftRadius = "50%";
+    // searchPage.style.borderBottomRightRadius = '50%';
     isSearchPageOpen = true;
+    // navList.style.display = 'none';
 }
 
 function closeSearchPage() {
@@ -55,12 +62,18 @@ function closeSearchPage() {
     isSearchPageOpen = false;
 }
 // Handle Clicks
+let isListOpen = false;
 function handleClicks(event) {
     let target = event.target;
     let fetchId = target.id;
 
     console.log("Target:", target);
     console.log("Id:", fetchId);
+
+    if(isListOpen == true){
+        isListOpen = false;
+        navList.style.left = "-200px";
+    }
 
     if (fetchId == 'search-icon' || fetchId == 'search-img') {
         console.log("Search Clicked");
@@ -79,11 +92,18 @@ function handleClicks(event) {
         console.log('inside close');
         closeFooter();
     }
-    else if (fetchId == 'search-meal-btn') {
+    else if (fetchId == 'search-meal-btn' || fetchId =='search-btn') {
         openSearchPage();
     } else if (isSearchPageOpen && fetchId != 'search-bar-page' && fetchId != 'search-bar' && fetchId != 'search-icon' && fetchId != 'search-img') {
         closeSearchPage();
+    }else if(fetchId == 'hamburger' && isListOpen == false){
+        isListOpen = true;
+        navList.style.left = "10px";
+    }else if(fetchId == 'hamburger' && isListOpen == true){
+        isListOpen = false;
+        navList.style.left = "-200px";
     }
+
 }
 
 // Fetching Api
@@ -165,9 +185,27 @@ function removeSuggestions(){
 
 
 
-// function showMeals(){
-    
-//     for(meal of dataArr){
+function showMeals(){
+    removeSuggestions();
+    foodContainer.innerHTML = '';
+    for(meal of dataArr){
+        console.log(meal);
+        let li = document.createElement('li');
+        li.setAttribute('class', 'food-card');
+        li.innerHTML= `
+        <img src="${meal.strMealThumb}" alt="">
+                <div class="card-details">
+                    <span class="card-heading">
+                        ${meal.strMeal}
+                    </span>
+                    <div class="card-btn">
+                        <span id="recepie">See Recepie</span>
+                        <i class="bi bi-heart-fill"></i>
+                    </div>
+                </div>
+        `;
+        foodContainer.append(li);
+    }
+}
 
-//     }
-// }
+
