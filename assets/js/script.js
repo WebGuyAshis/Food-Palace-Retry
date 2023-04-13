@@ -9,6 +9,9 @@ const searchBar = document.getElementById('search-bar');
 const suggestionList = document.getElementById('suggestion-list');
 const navList = document.getElementById('nav-list');
 const hamburgerIcon = document.getElementById('hamburger');
+const favSection = document.getElementById('favourite-section');
+
+const foodPage = document.getElementById('food-page');
 
 let dataArr = [];
 let suggestedData = [];
@@ -61,8 +64,17 @@ function closeSearchPage() {
     searchPage.style.width = '100vw';
     isSearchPageOpen = false;
 }
+
+function openFavourites(){
+    favSection.style.width = '40vw';
+}
+
+function closeFavourites(){
+    favSection.style.width = '0vw'
+}
 // Handle Clicks
 let isListOpen = false;
+
 function handleClicks(event) {
     let target = event.target;
     let fetchId = target.id;
@@ -77,11 +89,12 @@ function handleClicks(event) {
 
     if (fetchId == 'search-icon' || fetchId == 'search-img') {
         console.log("Search Clicked");
-        searchPage.style.height = '97vh';
-        searchBarContainer.style.marginTop = '7vh';
+        // searchPage.style.height = '97vh';
+        // searchBarContainer.style.marginTop = '7vh';
         setInterval(() => {
             foodContainer.style.display = 'flex';
         },);
+        foodPage.style.height = '100vh';
         showMeals();
     }
 
@@ -94,7 +107,7 @@ function handleClicks(event) {
     }
     else if (fetchId == 'search-meal-btn' || fetchId =='search-btn') {
         openSearchPage();
-    } else if (isSearchPageOpen && fetchId != 'search-bar-page' && fetchId != 'search-bar' && fetchId != 'search-icon' && fetchId != 'search-img') {
+    } else if (isSearchPageOpen && fetchId != 'search-bar-page' && fetchId != 'search-bar') {
         closeSearchPage();
     }else if(fetchId == 'hamburger' && isListOpen == false){
         isListOpen = true;
@@ -102,6 +115,10 @@ function handleClicks(event) {
     }else if(fetchId == 'hamburger' && isListOpen == true){
         isListOpen = false;
         navList.style.left = "-200px";
+    }else if(fetchId == 'Favourites'){
+        openFavourites();
+    }else if(fetchId == 'close-fav'){
+        closeFavourites();
     }
 
 }
