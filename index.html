@@ -17,18 +17,50 @@
     <div id="logo">
         @<span id="logo-first">W</span>ebGuyAshis
     </div>
-    <!-- Welcome Page -->
-    <!-- <div id="welcome-page-container">
-        <div id="welcome-text">
-            Welcome to Food Palace!
-        </div>
-        <div id="loading-container">
-            <div id="loading-bar">
-
+    <!-- For NavBar -->
+    <navbar id="nav">
+        <i class="bi bi-list" id="hamburger"></i>
+        <ul id="nav-list">
+            <li class="nav-list-items" id="home">
+                Home
+            </li>
+            <li class="nav-list-items" id="search-btn">
+                Search
+            </li>
+            <li class="nav-list-items" id="Favourites">
+                Favourites
+            </li>
+            <li class="nav-list-items" id="contact-me">
+                Contact Me
+            </li>
+        </ul>
+        <!-- SignUp SignIn/Authentication -->
+        <div id="authentication-btn">
+            <div id="sign-in" class="authenticate">
+                Sign In
+            </div>
+            <div id="sign-up" class="authenticate">
+                Sign Up
             </div>
         </div>
-    </div> -->
+    </navbar>
 
+    <!-- Landing Page -->
+    <div id="home-page">
+        <div id="home-details">
+            <div id="page-heading">
+                Let's Cook Something...
+            </div>
+            <div id="quote">
+                Where there is food there is Love.
+            </div>
+            <div id="search-meal-btn">
+                Search Meals
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Bar Page -->
     <div id="search-bar-page">
         <div id="search-bar-container">
             <div id="search">
@@ -51,6 +83,29 @@
         </div>
     </div>
 
+    <!-- Favourite Section -->
+    <div id="favourite-section">
+        <div id="favourite-heading">
+            Favourite
+            <i class="bi bi-x-lg" id="close-fav"></i>
+        </div>
+        <ul id="favourite-list">
+            <!-- <li class="favourite-list-item">
+                <img src="./assets/images/food mix.jpg" alt="">
+                <div class="card-details">
+                    <span class="card-heading">
+                        Tasty Food
+                    </span>
+                    <div class="card-btn">
+                        <span class="recepie">See Recepie</span>
+                        <i class="bi bi-heart-fill"></i>
+                    </div>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+
+    <!-- Search Results Page -->
     <div id="food-page">
         <ul id="food-container">
             <!-- <li class="food-card">
@@ -68,172 +123,76 @@
         </ul>
     </div>
 
+    <!-- Meal Desc Page -->
+    <div id="meal-desc">
+        <!-- <img id="meal-desc-img" src="./pexels-ash-376464.jpg" alt="">
 
-
-    <!-- Main Page Container -->
-    <div id="main-page-container">
-        <!-- NavBar -->
-        <navbar id="nav">
-            <!-- Navbar List -->
-            <!-- <ul id="nav-list">
-                <li class="nav-list-items" id="home">
-                    Home
-                </li>
-                <li class="nav-list-items" id="search-btn">
-                    Search
-                </li>
-                <li class="nav-list-items" id="Favourites">
-                    Favourites
-                </li>
-                <li class="nav-list-items" id="contact-me">
-                    Contact Me
-                </li>
-            </ul> -->
-
-            <i class="bi bi-list" id="hamburger"></i>
-            <ul id="nav-list">
-                <li class="nav-list-items" id="home">
-                    Home
-                </li>
-                <li class="nav-list-items" id="search-btn">
-                    Search
-                </li>
-                <li class="nav-list-items" id="Favourites">
-                    Favourites
-                </li>
-                <li class="nav-list-items" id="contact-me">
-                    Contact Me
-                </li>
-            </ul>
-
-
-
-            <!-- SignUp SignIn/Authentication -->
-            <div id="authentication-btn">
-                <div id="sign-in" class="authenticate">
-                    Sign In
-                </div>
-                <div id="sign-up" class="authenticate">
-                    Sign Up
-                </div>
+        <div id="meal-desc-details">
+            <div id="meal-desc-heading">
+                Honey Burger
             </div>
-        </navbar>
-
-        <div id="home-page">
-            <div id="home-details">
-                <!-- Background Home Image -->
-                <div id="page-heading">
-                    Let's Cook Something...
+            <p id="meal-details">
+                lorem ipsum 
+            </p>
+            <div class="meal-desc-buttons">
+                <div id="watch-vid" class="meal-btn">
+                    Watch Recepie
                 </div>
-                <div id="quote">
-                    Where there is food there is Love.
+                <div id="add-to-fav" class="meal-btn">
+                    Add To Favourite
                 </div>
-                <div id="search-meal-btn">
-                    Search Meals
-                </div>
-
             </div>
         </div>
 
-        <div id="favourite-section">
-            <div id="favourite-heading">
-                Favourite
-                <i class="bi bi-x-lg" id="close-fav"></i>
+        <div id="meal-img">
+            <img id="meal-image" src="./pexels-ash-376464.jpg" alt="">
+        </div>-->
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div id="about-me">
+            <div id="name">
+                Ashis Kumar Yadav
             </div>
-            <ul id="favourite-list">
-                <!-- <li class="favourite-list-item">
-                    <img src="./assets/images/food mix.jpg" alt="">
-                    <div class="card-details">
-                        <span class="card-heading">
-                            Tasty Food
-                        </span>
-                        <div class="card-btn">
-                            <span class="recepie">See Recepie</span>
-                            <i class="bi bi-heart-fill"></i>
-                        </div>
-                    </div>
-                </li> -->
+            Front End Developer & UI Designer
+            <ul id="connect-list">
+                <li class="connect-list-icons">
+                    <a href="">
+                        <img class="link-img" src="./assets/icons/instagram.png" alt="">
+                    </a>
+                </li>
+
+                <li class="connect-list-icons">
+                    <a href="">
+                        <img class="link-img" src="./assets/icons/facebook.png" alt="">
+                    </a>
+                </li>
+
+                <li class="connect-list-icons">
+                    <a href="https://github.com/WebGuyAshis">
+                        <img class="link-img" src="./assets/icons/github (2).png" alt="">
+                    </a>
+                </li>
+
+                <li class="connect-list-icons">
+                    <a href="">
+                        <img class="link-img" src="./assets/icons/gmail.png" alt="">
+                    </a>
+                </li>
+
+                <li class="connect-list-icons">
+                    <a href="https://www.linkedin.com/in/developer-ashis-yadav-046b26237">
+                        <img class="link-img" src="./assets/icons/linkedin.png" alt="">
+                    </a>
+                </li>
             </ul>
         </div>
-        <!-- Meal Desc Page -->
-        <div id="meal-desc">
-            <!-- <img id="meal-desc-img" src="./pexels-ash-376464.jpg" alt="">
-
-            <div id="meal-desc-details">
-                <div id="meal-desc-heading">
-                    Honey Burger
-                </div>
-                <p id="meal-details">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis cupiditate voluptatibus animi
-                    saepe ut id, consequatur doloremque quas ullam, velit corrupti optio rem cumque ipsum quo error
-                    dicta nam magnam!
-                    <br>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod dolore ad soluta alias commodi hic
-                    beatae tempore nisi, nam rem ullam tempora? Eum aut dignissimos reiciendis doloribus itaque
-                    similique voluptatem!
-                    <br>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores excepturi voluptates accusamus
-                    similique ullam officia molestiae, ipsa enim eum magni!
-                </p>
-                <div class="meal-desc-buttons">
-                    <div id="watch-vid" class="meal-btn">
-                        Watch Recepie
-                    </div>
-                    <div id="add-to-fav" class="meal-btn">
-                        Add To Favourite
-                    </div>
-                </div>
-            </div>
-
-            <div id="meal-img">
-                <img id="meal-image" src="./pexels-ash-376464.jpg" alt="">
-            </div>-->
-        </div> 
-
-            <!-- Footer -->
-            <footer id="footer">
-                <div id="about-me">
-                    <div id="name">
-                        Ashis Kumar Yadav
-                    </div>
-                    Front End Developer & UI Designer
-                    <ul id="connect-list">
-                        <li class="connect-list-icons">
-                            <a href="">
-                                <img class="link-img" src="./assets/icons/instagram.png" alt="">
-                            </a>
-                        </li>
-
-                        <li class="connect-list-icons">
-                            <a href="">
-                                <img class="link-img" src="./assets/icons/facebook.png" alt="">
-                            </a>
-                        </li>
-
-                        <li class="connect-list-icons">
-                            <a href="https://github.com/WebGuyAshis">
-                                <img class="link-img" src="./assets/icons/github (2).png" alt="">
-                            </a>
-                        </li>
-
-                        <li class="connect-list-icons">
-                            <a href="">
-                                <img class="link-img" src="./assets/icons/gmail.png" alt="">
-                            </a>
-                        </li>
-
-                        <li class="connect-list-icons">
-                            <a href="https://www.linkedin.com/in/developer-ashis-yadav-046b26237">
-                                <img class="link-img" src="./assets/icons/linkedin.png" alt="">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div id="footer-text">
-                    Proudly Developed by @WebGuyAshis 😉
-                </div>
-            </footer>
-        <script src="./assets/js/script1.js"></script>
+        <div id="footer-text">
+            Proudly Developed by @WebGuyAshis 😉
+        </div>
+    </footer>
+    <script src="./assets/js/script1.js"></script>
 </body>
 
 </html>

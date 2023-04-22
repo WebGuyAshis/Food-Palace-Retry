@@ -6,7 +6,6 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
-
 /* Custom Fonts */
 @font-face {
     font-family: 'ResplendentBrush';
@@ -18,146 +17,21 @@
     src: url('/assets/fonts/Purple\ Dragon.otf');
 }
 
-
 body {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
-/*Welcome Page  */
-/* #welcome-page-container {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    z-index: 2;
-    color: rgb(255, 255, 255);
-    background-color: black;
-}
-
-#welcome-page-container::before {
-    content: "";
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background-image: url(../images/food\ mix.jpg);
-    background-position: center;
-    background-size: cover;
-    opacity: 0.5;
-}
-
-.leavePage {
-    animation: leavepage 1s linear forwards;
-    border-radius: 100px;
-}
-
-@keyframes leavepage {
-    0% {
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-    }
-
-    40% {
-        top: 50%;
-        left: 50%;
-        width: 50vw;
-        height: 50vw;
-        transform: translate(-50%, -50%);
-    }
-
-    60% {
-        top: 60%;
-        left: 60%;
-        width: 20vw;
-        height: 20vw;
-        transform: translate(-50%, -50%);
-        opacity: 0.8;
-    }
-
-    100% {
-        top: 100%;
-        left: 95%;
-        width: 0vw;
-        height: 0vw;
-        transform: translate(-100%, -100%);
-        opacity: 0;
-    }
-
-}
-
-#welcome-text {
-    font-family: 'PurpleDragon';
-    font-size: 60px;
-    z-index: 5;
-}
-
-#loading-container {
-    width: 35%;
-    border: 0.5px solid;
-    height: 10px;
-    z-index: 5;
-} */
-
-/* #loading-bar {
-    background-color: rgb(224, 61, 61);
-    height: 100%;
-    animation: loading 1s linear forwards;
-} */
-
-/* @keyframes loading {
-    0% {
-        width: 0%;
-    }
-
-    30% {
-        width: 20%;
-    }
-
-    90% {
-        width: 60%;
-    }
-
-    100% {
-        width: 100%;
-    }
-} */
-
-#main-page-container {
-    /* display: none; */
-}
-
-/* Navbar */
-#nav {
-    /* margin-left: 10px; */
-    display: flex;
-    justify-content: space-between;
-    height: 7vh;
-    background: linear-gradient(to right, rgb(0, 0, 0, 0.2), rgb(46, 46, 46, 0.2));
-    /* background-color: aquamarine; */
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    /* justify-content: flex-end; */
-}
-
+/* Positioning Logo */
 #logo {
     font-family: 'ResplendentBrush';
     font-size: 35px;
     font-weight: 900;
     color: rgb(182, 182, 182);
-    margin-left: 30px;
     position: fixed;
     z-index: 1;
     bottom: 3vh;
@@ -169,6 +43,33 @@ body {
     font-family: 'ResplendentBrush';
 }
 
+/* Styling Navbar */
+#nav {
+    display: flex;
+    justify-content: space-between;
+    height: 7vh;
+    background: linear-gradient(to right, rgb(0, 0, 0, 0.2), rgb(46, 46, 46, 0.2));
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+#hamburger {
+    color: antiquewhite;
+    height: 100%;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+#hamburger:hover {
+    color: orangered;
+}
+
 #nav-list {
     margin-left: 10px;
     list-style: none;
@@ -176,8 +77,6 @@ body {
     width: 350px;
     justify-content: space-around;
     align-items: center;
-    /* background-color: aliceblue; */
-    transition: 0.5s;
 }
 
 .nav-list-items {
@@ -185,7 +84,6 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    /* background-color: aqua; */
 }
 
 .nav-list-items:hover {
@@ -193,15 +91,13 @@ body {
     color: white;
 }
 
+/* For Sign-in Sign-Up */
 #authentication-btn {
     width: 160px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-right: 15px;
-    /* background-color: aqua; */
-    /* text-align: end;
-     */
 }
 
 .authenticate {
@@ -210,24 +106,24 @@ body {
     border-radius: 5px;
     color: rgb(226, 226, 226);
     border: 1px solid orangered;
-    /* text-align: end; */
-
 }
 
 .authenticate:hover {
     background-color: rgb(255, 78, 14);
 }
 
+/* Landing Page */
 #home-page {
-    /* height: 100vh ; */
-    /* background-color: bisque; */
     height: 100vh;
     width: 100vw;
+    /* display: none; */
 }
 
 #home-page::before {
     position: absolute;
     content: '';
+    top: 0;
+    left: 0;
     background-image: url('../images/food-4k.jpg');
     height: 100%;
     width: 100%;
@@ -266,32 +162,27 @@ body {
     color: aliceblue;
 }
 
-/* Search Bar Page */
+/* SEarch Bar Page */
 #search-bar-page {
     position: absolute;
-    /* position: relative; */
     transition: 0.5s;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
-    z-index: 4;
+    z-index: 10;
     /* height: 65vh; */
     height: 0;
     background-color: rgb(61, 61, 61);
     width: 100vw;
     overflow: hidden;
-    overflow-y: scroll;
-    background: rgba( 0, 0, 0, 0.25 );
-box-shadow: 0 8px 32px 0 rgba(74, 74, 74, 0.37);
-backdrop-filter: blur( 8.5px );
--webkit-backdrop-filter: blur( 8.5px );
-border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(74, 74, 74, 0.37);
+    backdrop-filter: blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
+    border-radius: 10px;
 }
-
 #search-bar-container {
     margin-top: 25vh;
-    /* background-color: aqua; */
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -299,16 +190,7 @@ border-radius: 10px;
     overflow: hidden;
     transition: 0.5s;
     z-index: 10;
-    /* position: relative; */
-    /* background-color: aqua; */
-    /* position: absolute; */
-    /* z-index: ; */
 }
-
-#search-bar-container:hover {
-    /* height: 100%; */
-}
-
 #search {
     width: 400px;
     height: 40px;
@@ -332,51 +214,38 @@ border-radius: 10px;
     justify-content: center;
     background-color: antiquewhite;
     cursor: pointer;
-    /* border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px; */
 }
 
 #search-icon img {
     height: 70%;
 }
-
+/* Susggestion List */
 #suggestion-list {
-    display: block;
-    /* display: none; */
-    /* position: absolute; */
-    /* height: 200px; */
-    /* z-index: 5000; */
-    /* z-index: 10; */
-    width: 400px;
-    top: 40px;
-    /* background-color: aqua; */
 
+    display: block;
+    width: 400px;
+    /* top: 40px; */
 }
 
 .suggestion-list-item {
     color: rgb(209, 209, 209);
-    /* position: absolute; */
     overflow: hidden;
-    /* background-color: aqua; */
     background: rgba(98, 98, 98, 0.7);
     display: flex;
     border-bottom: 0.5px solid rgb(43, 43, 43, 0.7);
     align-items: center;
     padding: 2px;
     transition: 0.1s;
-    /* z-index: 11111111; */
 }
 .suggestion-list-item:hover{
     transition: 0.1s;
     background-color: rgb(0, 0, 0, 0.3);
 }
-
 .food-img {
     height: 38px;
     width: 38px;
     overflow: hidden;
     border-radius: 4px;
-    /* margin-left: 8px; */
 }
 
 .food-img img {
@@ -387,7 +256,6 @@ border-radius: 10px;
 .food-text {
     margin-left: 10px;
 }
-
 /* Favourite section */
 #favourite-section {
     position: absolute;
@@ -395,19 +263,16 @@ border-radius: 10px;
     top: 0;
     height: 100vh;
     width: 0vw;
-    /* background: linear-gradient(black, transparent); */
-    z-index: 10;
+    z-index: 11;
     background: rgba(0, 0, 0, 0.75);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     backdrop-filter: blur(6.5px);
     -webkit-backdrop-filter: blur(6.5px);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
     transition: 0.3s;
+    overflow: hidden;
     /* display: none; */
-
 }
-
 #favourite-heading {
     padding:0 10px;
     height: 7vh;
@@ -429,34 +294,25 @@ border-radius: 10px;
     padding: 5px;
     box-sizing: content-box;
 }
-
 #favourite-list {
     height: 93vh;
     overflow-y: scroll;
 }
-
-/* ::-webkit-scrollbar {
-    display: none;
-} */
-
 .favourite-list-item {
     position: relative;
     height: 250px;
-    /* width: 190px; */
     overflow: hidden;
     border-radius: 10px;
     transition: 0.5s;
     box-shadow: 0 0 10px 2px rgb(93, 93, 93, 0.6);
     margin: 10px;
 }
-
 .favourite-list-item::before {
     position: absolute;
     bottom: 0;
     content: '';
     background: linear-gradient(transparent, black);
     height: 60%;
-    /* width: 190px; */
     width: 100%;
 }
 
@@ -479,8 +335,6 @@ border-radius: 10px;
     font-family: 'PurpleDragon';
 }
 .card-btn{
-    /* background-color: antiquewhite; */
-    /* width: 190px; */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -488,7 +342,6 @@ border-radius: 10px;
     padding: 15px;
 }
 .recepie{
-    /* border: px solid rgb(255, 255, 255); */
     background-color: rgb(63, 63, 63, 0.6);
     box-sizing: content-box;
     border-radius: 5px;
@@ -511,97 +364,38 @@ border-radius: 10px;
 .card-btn i:hover{
     background-color: rgb(106, 106, 106);
 }
-
-
-/* footer */
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgb(38, 38, 38, 0.6);
+/* Search Results Page */
+#food-page{
+    height: 0;
     width: 100vw;
-    color: rgb(113, 113, 113);
-    color: white;
-    height: 3vh;
-    z-index: 3;
-    transition: 0.7s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    z-index: 1;
+    transition: 0.3s;
 }
-
-#about-me {
-    /* background-color: aqua; */
-    text-align: center;
-    display: none;
-}
-
-#connect-list {
-    display: flex;
-    justify-content: center;
-}
-
-#name {
-    font-family: 'PurpleDragon';
-    font-size: 40px;
-}
-
-.connect-list-icons {
-    height: 50px;
-    width: 50px;
-    overflow: hidden;
-    background-color: azure;
-    border-radius: 50%;
-    list-style: none;
-    margin: 10px;
-}
-
-.link-img {
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    /* object-fit: cover; */
-}
-
-
-
-/* For making blur */
-.blur{
-    filter: blur(5px);
-}
-
-/* Food List */
 #food-container{
-    display: flex;
+    /* display: flex; */
     display: none;
     flex-wrap: wrap;
-    /* gap: 10px; */
     height: 93vh;
     width: 100vw;
     overflow-y: scroll;
-    /* justify-content: flex-start;
-    align-items: center; */
     align-content: flex-start;
-    /* justify-content: space-between; */
     position: absolute;
     top: 7vh;
-    /* display: none; */
-    /* background-color: rgb(173, 173, 173) */
 }
 .food-card{
-    /* flex: 1 0 0; */
     position: relative;
     height: 320px;
-    /* width: 30%; */
     width: calc((100vw - 120px - 25px)/6);
-    /* min-width: 300px;
-    max-width: 500px; */
     overflow: hidden;
     border-radius: 10px;
     transition: 0.5s;
-    /* box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.6); */
     margin: 10px;
 }
 .food-card:before {
@@ -612,57 +406,21 @@ footer {
     height: 80%;
     width: 100%;
 }
-/* .food-card:hover{
-    transform: scale(1.2);
-    z-index: 10;
-} */
 .food-card img {
     object-fit: cover;
     height: 100%;
     width: 100%;
 }
 
-#hamburger{
-    color: antiquewhite;
-    display: inline-block;
-    height: 100%;
-    /* background-color: aqua; */
-    width: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: none;
-}
-
-/* Meal Desc Page */
-/* *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body{
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-} */
+/* MEal Recepie */
 #meal-desc{
     display: none;
-    /* height: 95vh;
-    width: 95vw; */
     height: 100vh;
     width: 100vw;
     background-color: rgb(28, 28, 28, 0.5);
     border-radius: 10px;
-    /* position: absolute;
-    top: 50%;
-    left: 50%; */
-    /* transform: translate(-50%, -50%); */
-    /* overflow-x: hidden; */
-    /* overflow-y: scroll; */
     transition: 0.4s;
+    overflow: hidden;
 }
 #meal-desc::before{
     content: '';
@@ -683,7 +441,6 @@ body{
     position: absolute;
     max-height: 46vh;
     width: 95vw;
-    /* border: 1px solid white; */
     background-color: rgba(28, 28, 28, 0.6);
     border-radius: 10px;
     z-index: 100;
@@ -693,18 +450,6 @@ body{
     font-family: sans-serif;
     overflow-y: scroll;
     padding: 10px;
-}
-::-webkit-scrollbar,
-::-webkit-scrollbar-thumb {
-  width: 25px;
-  border-radius: 15px;
-  background-color: rgb(33, 33, 33);
-  background-clip: padding-box;
-  border: 10px solid transparent;
-}
-::-webkit-scrollbar-thumb {        
-  box-shadow: inset 0 0 0 10px;
-  color: rgb(154, 255, 114);
 }
 
 #meal-desc-heading{
@@ -745,6 +490,7 @@ body{
 
 #meal-img{
     position: absolute;
+    z-index: 100;
     top: 10vh;
     left: 50%;
     transform: translateX(-50%);
@@ -753,6 +499,8 @@ body{
     width: 20vw;
     min-width: 150px;
     min-height: 150px;
+    max-width: 250px;
+    max-height: 250px;
     overflow: hidden;
     border: none;
     border-radius: 10px;
@@ -766,13 +514,64 @@ body{
 }
 
 
+/* footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(38, 38, 38, 0.6);
+    width: 100vw;
+    color: rgb(113, 113, 113);
+    color: white;
+    height: 3vh;
+    z-index: 3;
+    transition: 0.7s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
+#about-me {
+    text-align: center;
+    display: none;
+}
+
+#connect-list {
+    display: flex;
+    justify-content: center;
+}
+
+#name {
+    font-family: 'PurpleDragon';
+    font-size: 40px;
+}
+
+.connect-list-icons {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    background-color: azure;
+    border-radius: 50%;
+    list-style: none;
+    margin: 10px;
+}
+
+.link-img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    /* object-fit: cover; */
+}
+
+/* Media Queries */
 @media screen and (max-width: 550px) {
-    #hamburger{
+    #hamburger {
         display: flex;
     }
-    #nav-list{
-        /* background-color: aqua; */
+
+    #nav-list {
         position: absolute;
         background-color: rgb(83, 83, 83, 0.7);
         left: -200px;
@@ -784,23 +583,8 @@ body{
         flex-direction: column;
 
     }
-    .food-card{
+
+    .food-card {
         width: calc((100vw - 60px - 25px)/3);
     }
-}
-
-
-/* Food Page */
-#food-page{
-    height: 0;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    background-color: rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
-    z-index: 1;
-    transition: 0.3s;
 }
