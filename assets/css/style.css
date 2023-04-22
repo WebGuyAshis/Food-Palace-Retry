@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
-    box-sizing: border-box;
     scroll-behavior: smooth;
 }
 /* Custom Fonts */
@@ -23,7 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 /* Positioning Logo */
@@ -116,6 +115,8 @@ body {
 #home-page {
     height: 100vh;
     width: 100vw;
+    /* overflow: hidden; */
+    background-color: rgb(0, 0, 0);
     /* display: none; */
 }
 
@@ -522,7 +523,6 @@ footer {
     transform: translateX(-50%);
     background-color: rgb(38, 38, 38, 0.6);
     width: 100vw;
-    color: rgb(113, 113, 113);
     color: white;
     height: 3vh;
     z-index: 3;
@@ -582,6 +582,11 @@ footer {
         display: flex;
         flex-direction: column;
 
+    }
+    #page-heading {
+        font-size: 45px;
+        font-family: 'PurpleDragon';
+        color: rgb(235, 235, 235);
     }
 
     .food-card {
