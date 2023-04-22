@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: sans-serif;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 /* Custom Fonts */
@@ -137,12 +138,12 @@ body {
 
 /* Navbar */
 #nav {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     display: flex;
     justify-content: space-between;
     height: 7vh;
-    /* background-color: aquamarine; */
     background: linear-gradient(to right, rgb(0, 0, 0, 0.2), rgb(46, 46, 46, 0.2));
+    /* background-color: aquamarine; */
     width: 100vw;
     position: fixed;
     top: 0;
@@ -169,6 +170,7 @@ body {
 }
 
 #nav-list {
+    margin-left: 10px;
     list-style: none;
     display: flex;
     width: 350px;
@@ -196,7 +198,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-right: 30px;
+    margin-right: 15px;
     /* background-color: aqua; */
     /* text-align: end;
      */
@@ -218,7 +220,7 @@ body {
 
 #home-page {
     /* height: 100vh ; */
-    background-color: bisque;
+    /* background-color: bisque; */
     height: 100vh;
     width: 100vw;
 }
@@ -356,12 +358,17 @@ border-radius: 10px;
     /* position: absolute; */
     overflow: hidden;
     /* background-color: aqua; */
-    background: rgba(87, 87, 87, 0.7);
+    background: rgba(98, 98, 98, 0.7);
     display: flex;
-    border-bottom: 0.5px solid rgb(155, 155, 155);
+    border-bottom: 0.5px solid rgb(43, 43, 43, 0.7);
     align-items: center;
     padding: 2px;
+    transition: 0.1s;
     /* z-index: 11111111; */
+}
+.suggestion-list-item:hover{
+    transition: 0.1s;
+    background-color: rgb(0, 0, 0, 0.3);
 }
 
 .food-img {
@@ -428,9 +435,9 @@ border-radius: 10px;
     overflow-y: scroll;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     display: none;
-}
+} */
 
 .favourite-list-item {
     position: relative;
@@ -477,7 +484,32 @@ border-radius: 10px;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 15px;
+}
+.recepie{
+    /* border: px solid rgb(255, 255, 255); */
+    background-color: rgb(63, 63, 63, 0.6);
+    box-sizing: content-box;
+    border-radius: 5px;
+    padding: 7px;
+    cursor: pointer;
+}
+.recepie:hover{
+    outline: 0.5px solid rgb(255, 255, 255);
+    background-color: rgb(63, 63, 63, 0.6);
+}
+.card-btn i {
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+}
+.card-btn i:hover{
+    background-color: rgb(106, 106, 106);
 }
 
 
@@ -543,9 +575,9 @@ footer {
 /* Food List */
 #food-container{
     display: flex;
+    display: none;
     flex-wrap: wrap;
     /* gap: 10px; */
-    display: none;
     height: 93vh;
     width: 100vw;
     overflow-y: scroll;
@@ -555,21 +587,22 @@ footer {
     /* justify-content: space-between; */
     position: absolute;
     top: 7vh;
+    /* display: none; */
     /* background-color: rgb(173, 173, 173) */
 }
 .food-card{
     /* flex: 1 0 0; */
     position: relative;
-    height: 250px;
+    height: 320px;
     /* width: 30%; */
-    width: calc((100vw - 42px)/3);
+    width: calc((100vw - 120px - 25px)/6);
     /* min-width: 300px;
     max-width: 500px; */
     overflow: hidden;
     border-radius: 10px;
     transition: 0.5s;
     /* box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.6); */
-    margin: 7px;
+    margin: 10px;
 }
 .food-card:before {
     position: absolute;
@@ -601,6 +634,139 @@ footer {
     display: none;
 }
 
+/* Meal Desc Page */
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+} */
+#meal-desc{
+    display: none;
+    /* height: 95vh;
+    width: 95vw; */
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(28, 28, 28, 0.5);
+    border-radius: 10px;
+    /* position: absolute;
+    top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    /* overflow-x: hidden; */
+    /* overflow-y: scroll; */
+    transition: 0.4s;
+}
+#meal-desc::before{
+    content: '';
+    position: absolute;
+    background: linear-gradient(to right,rgb(0, 0, 0),rgb(0, 0, 0,0.6));
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+#meal-desc-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#meal-desc-details{
+    position: absolute;
+    max-height: 46vh;
+    width: 95vw;
+    /* border: 1px solid white; */
+    background-color: rgba(28, 28, 28, 0.6);
+    border-radius: 10px;
+    z-index: 100;
+    color: rgb(217, 217, 217);
+    top: 35vh;
+    left: 20px;
+    font-family: sans-serif;
+    overflow-y: scroll;
+    padding: 10px;
+}
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb {
+  width: 25px;
+  border-radius: 15px;
+  background-color: rgb(33, 33, 33);
+  background-clip: padding-box;
+  border: 10px solid transparent;
+}
+::-webkit-scrollbar-thumb {        
+  box-shadow: inset 0 0 0 10px;
+  color: rgb(154, 255, 114);
+}
+
+#meal-desc-heading{
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: rgb(255, 104, 49);
+}
+.meal-desc-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    top: 81.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.meal-btn{
+    width: 150px;
+    height: 40px;
+    margin: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+
+}
+#add-to-fav{
+    background: rgb(255, 110, 110);
+    cursor: pointer;
+    color: white;
+}
+#watch-vid{
+    background: rgb(221, 177, 0);
+    cursor: pointer;
+    color: white;
+}
+
+#meal-img{
+    position: absolute;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid;
+    height: 20vw;
+    width: 20vw;
+    min-width: 150px;
+    min-height: 150px;
+    overflow: hidden;
+    border: none;
+    border-radius: 10px;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+}
+#meal-image{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+
 @media screen and (max-width: 550px) {
     #hamburger{
         display: flex;
@@ -616,9 +782,10 @@ footer {
         top: 7vh;
         display: flex;
         flex-direction: column;
-        /* justify-content: flex-start; */
-        /* align-items: flex-start; */
-        /* display: none; */
+
+    }
+    .food-card{
+        width: calc((100vw - 60px - 25px)/3);
     }
 }
 
@@ -632,9 +799,8 @@ footer {
     left: 0;
     backdrop-filter: blur(15px) saturate(180%);
     -webkit-backdrop-filter: blur(15px) saturate(180%);
-    background-color: rgba(17, 25, 40, 0.75);
+    background-color: rgba(0, 0, 0, 0.25);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
     z-index: 1;
     transition: 0.3s;
 }
