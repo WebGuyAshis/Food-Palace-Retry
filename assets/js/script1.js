@@ -1,5 +1,5 @@
-const welcomePage = document.getElementById('welcome-page-container');
-const mainPage = document.getElementById('main-page-container');
+// const welcomePage = document.getElementById('welcome-page-container');
+// const mainPage = document.getElementById('main-page-container');
 const footer = document.getElementById('footer');
 const aboutMe = document.getElementById('about-me');
 const searchPage = document.getElementById('search-bar-page');
@@ -142,6 +142,7 @@ function removeSuggestions() {
 
 
 function showMeals() {
+    mealDesc.style.display = 'none';
     removeSuggestions();
     foodContainer.innerHTML = '';
     for (meal of fetchedData) {
@@ -172,7 +173,7 @@ const recepieDetailBtn = document.getElementsByClassName('recepie');
 function showMealDetail(event){
     let mealId = event.target.getAttribute("data-mealId");
     console.log("Data ID:", mealId);
-    mealDesc.style.display = 'block';
+    mealDesc.style.display = 'flex';
     foodPage.style.display = 'none';
     homePage.style.display = 'none';
     for(meals of fetchedData){
@@ -180,6 +181,9 @@ function showMealDetail(event){
             mealDesc.innerHTML=
             `
             <img id="meal-desc-img" src="${meals.strMealThumb}" alt="">
+            <div id="meal-img">
+                <img id="meal-image" src="${meals.strMealThumb}" alt="">
+            </div>
             <div id="meal-desc-details">
                 <div id="meal-desc-heading">
                     ${meals.strMeal}
@@ -198,10 +202,6 @@ function showMealDetail(event){
                         Add To Favourite
                     </div>
                 </div>
-
-            <div id="meal-img">
-                <img id="meal-image" src="${meals.strMealThumb}" alt="">
-            </div>
             `;
         }
     }
@@ -226,12 +226,18 @@ function handleClicks(event) {
         navList.style.left = "-200px";
     }
 
+    if(fetchId=='home'){
+        foodPage.style.display = 'none';
+        mealDesc.style.display = 'none';
+        homePage.style.display = 'block'
+    }
+
     if (fetchId == 'search-icon' || fetchId == 'search-img') {
         console.log("Search Clicked");
+        foodContainer.style.display = 'flex';
         setInterval(() => {
-            foodContainer.style.display = 'flex';
+            foodPage.style.height = '100vh';
         },);
-        foodPage.style.height = '100vh';
         showMeals();
     }
 
