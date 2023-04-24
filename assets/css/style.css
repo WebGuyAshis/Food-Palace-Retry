@@ -411,10 +411,23 @@ body {
     top: 7vh;
 }
 
+#food-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+#food-container::-webkit-scrollbar-track {
+    background-color: rgb(43, 43, 43);
+}
+
+#food-container::-webkit-scrollbar-thumb {
+    background: #5aff8c;
+    border-radius: 5px;
+}
+
 .food-card {
     position: relative;
     height: 320px;
-    width: calc((100vw - 120px - 25px)/6);
+    width: calc((100vw - 120px - 5px)/6);
     overflow: hidden;
     border-radius: 10px;
     transition: 0.5s;
@@ -614,7 +627,7 @@ footer {
 }
 
 /* Media Queries */
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 389px) {
     #hamburger {
         display: flex;
     }
@@ -639,6 +652,78 @@ footer {
     }
 
     .food-card {
-        width: calc((100vw - 60px - 25px)/3);
+        width: calc(100vw - 20px - 5px);
+    }
+    footer{
+        font-size: 12px;
+    }
+}
+@media (min-width:390px ) and (max-width:579px )  {
+    #hamburger {
+        display: flex;
+    }
+
+    #nav-list {
+        position: absolute;
+        background-color: rgb(83, 83, 83, 0.7);
+        left: -200px;
+        padding: 10px;
+        width: 150px;
+        border-radius: 10px;
+        top: 7vh;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    #page-heading {
+        font-size: 45px;
+        font-family: 'PurpleDragon';
+        color: rgb(235, 235, 235);
+    }
+
+    .food-card {
+        width: calc((100vw - 40px - 5px)/2);
+    }
+}
+
+@media (min-width:580px ) and (max-width:779px )  {
+    #hamburger {
+        display: flex;
+    }
+
+    #nav-list {
+        position: absolute;
+        background-color: rgb(83, 83, 83, 0.7);
+        left: -200px;
+        padding: 10px;
+        width: 150px;
+        border-radius: 10px;
+        top: 7vh;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    #page-heading {
+        font-size: 45px;
+        font-family: 'PurpleDragon';
+        color: rgb(235, 235, 235);
+    }
+
+    .food-card {
+        width: calc((100vw - 60px - 5px)/3);
+    }
+}
+
+@media (min-width:780px ) and (max-width:930px )  {
+    .food-card {
+        width: calc((100vw - 80px - 5px)/4);
+    }
+}
+
+@media (min-width:931px ) and (max-width:1100px )  {
+    .food-card {
+        width: calc((100vw - 100px - 5px)/5);
     }
 }
