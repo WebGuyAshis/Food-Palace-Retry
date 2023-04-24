@@ -104,7 +104,7 @@ function closeSearchPage() {
 }
 
 function openFavourites() {
-    favSection.style.width = '40vw';
+    favSection.style.width = '350px';
 }
 
 function closeFavourites() {
