@@ -30,15 +30,15 @@ blurContainer.id = 'blur-container';
 async function fetchApi(url) {
   let response = await fetch(url);
   let data = await response.json();
-  console.log(data);
+  // console.log(data);
   return data;
 }
 // Reading inputs on Search Bar
 searchBar.addEventListener('input', function (event) {
   let searchVal = event.target.value;
-  console.log("Search Word", searchVal);
+  // console.log("Search Word", searchVal);
   if (searchBar.value.trim() === "") {
-    console.log("Empty");
+    // console.log("Empty");
     removeSuggestions();
     return;
   }
@@ -57,12 +57,13 @@ function suggestions(url) {
       for (let i = 0; i < 5; i++) {
         let li = document.createElement('li');
         li.setAttribute('class', 'suggestion-list-item');
+        li.setAttribute('data-mealId',fetchedData[i].idMeal)
         li.innerHTML =
           `
-                  <div class="food-img">
+                  <div class="food-img" data-mealId=${fetchedData[i].idMeal}>
                       <img src="${fetchedData[i].strMealThumb}" alt="">
                   </div>
-                  <div class="food-text">
+                  <div class="food-text" data-mealId=${fetchedData[i].idMeal}>
                       ${fetchedData[i].strMeal}
                   </div>
                   `;
@@ -97,7 +98,7 @@ function handleClicks(event) {
   let fetchId = target.id;
   let fetchClass = target.classList.value;
 
-  // console.log("Target:", target);
+  console.log("Target:", target);
   console.log("Id:", fetchId);
   console.log("Fetch Class: ", fetchClass);
 
@@ -144,11 +145,11 @@ function handleClicks(event) {
       renderList();
     } else {
       // Remove the id from the fav array if it is already present
-      event.target.innerText = 'Add to Favourite';
       fav.splice(index, 1);
       console.log(`Removed ${fetchId} from fav:`, fav);
       console.log("Removed From List");
       renderList();
+      showMeals();
     }
   }
   if (fetchId == 'contact-me') {
@@ -157,6 +158,18 @@ function handleClicks(event) {
 else if (fetchId != 'footer' && isFooterOpen) {
     console.log('inside close');
     closeFooter();
+}
+
+if(fetchId == 'home'){
+  closeFavourites();
+  foodPage.style.display = 'none';
+  mealDesc.style.display = 'none';
+  homePage.style.display = 'block';
+}
+
+if(fetchClass =='suggestion-list-item' || fetchClass == 'food-text'){
+  let mealId = event.target.getAttribute("data-mealId");
+  showMealDetail(mealId);
 }
 }
 
@@ -208,19 +221,26 @@ function showMeals() {
                     ${meal.strMeal}
                     </div>
                     <div class="card-button">
-                        <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(event)">See Recepie</div>
+                        <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(${meal.idMeal})">See Recepie</div>
                         <div class="favourite-btn card-btn" id= ${meal.idMeal}>Add to Favourite</div>
                     </div>
                 </div>
       `;
     foodContainer.append(li);
+
+
+    if(fav.includes(meal.idMeal)){
+      console.log("it exists");
+      console.log("Inside Fav:",meal.strMeal );
+      let btn = document.getElementById(meal.idMeal);
+      btn.innerText = 'Remove From Favourite'
+    }
   }
   for (let card of foodCard) {
     const cardDetails = card.getElementsByClassName('card-details')[0];
     const cardButton = card.getElementsByClassName('card-button')[0];
-    console.log("Inside Hover Effect");
+    // console.log("Inside Hover Effect");
     card.addEventListener('mouseenter', () => {
-      console.log("mouseover")
       cardDetails.style.display = 'block';
       cardButton.style.display = 'block';
       setTimeout(() => {
@@ -229,7 +249,6 @@ function showMeals() {
     });
 
     card.addEventListener('mouseleave', () => {
-      console.log("mouseout")
       cardButton.style.height = '0px';
       setTimeout(() => {
         cardButton.style.display = 'none';
@@ -240,38 +259,58 @@ function showMeals() {
 }
 
 // Showing Meal Details/recepie
-function showMealDetail(event) {
-  let mealId = event.target.getAttribute("data-mealId");
-  console.log("Data ID:", mealId);
+function showMealDetail(mealId) {
+  console.log("Meal ID = ",mealId);
   mealDesc.style.display = 'flex';
   foodPage.style.display = 'none';
   homePage.style.display = 'none';
+  console.log("Fetched Data:", fetchedData);
   for (meals of fetchedData) {
     if (mealId == meals.idMeal) {
-      mealDesc.innerHTML =
-        `
+          mealDesc.innerHTML =
+          `
           <img id="meal-desc-img" src="${meals.strMealThumb}" alt="">
-          <div id="meal-img">
-              <img id="meal-image" src="${meals.strMealThumb}" alt="">
-          </div>
-          <div id="meal-desc-details">
-              <div id="meal-desc-heading">
-                  ${meals.strMeal}
-              </div>
-              <h3>Recepie</h3>
-              </br>
-              <p id="meal-details">
-                 ${meals.strInstructions}
-              </p>
-              </div>
-              <div class="meal-desc-buttons">
-                  <div id="watch-vid" class="meal-btn">
-                      Watch Recepie
-                  </div>
-                  <div id="add-to-fav" class="meal-btn">
-                      Add To Favourite
-                  </div>
-              </div>
+        <div id="left-desc">
+            <div id="meal-img">
+                <img src="${meals.strMealThumb}" alt="">
+            </div>
+            <div id="food-desc">
+                <div id="type">Type:
+                    <span id="meal-type">
+                        ${meals.strArea}
+                    </span>
+                </div>
+
+                <div id="ingredients">
+                    Ingredients:
+                    <span id="ingredients-type">
+                        ${meals.strIngredient1},
+                        ${meals.strIngredient2},
+                        ${meals.strIngredient3},
+                        ${meals.strIngredient4},
+                        ${meals.strIngredient5},
+                        ${meals.strIngredient6},
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="right-desc">
+            <div id="meal-heading">
+            ${meals.strMeal}
+            </div>
+
+            <div id="recepie">
+            ${meals.strInstructions}
+            </div>
+            <div class="meal-desc-buttons">
+                <div id="watch-vid" class="meal-btn">
+                    <a href="${meals.strYoutube}">Watch Recepie</a>
+                </div>
+                <div id="add-to-fav" class="meal-btn">
+                    Add To Favourite
+                </div>
+            </div>
+        </div>
           `;
     }
   }
@@ -312,7 +351,7 @@ function addToFav(id) {
                       ${meal.strMeal}
                       </div>
                       <div class="fav-card-button">
-                          <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(event)">See Recepie</div>
+                          <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(${meal.idMeal})">See Recepie</div>
                           <div class="favourite-btn card-btn" id= ${meal.idMeal}>Remove from Favourite</div>
                       </div>
                   </div>
