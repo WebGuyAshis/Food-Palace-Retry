@@ -11,11 +11,23 @@ const navList = document.getElementById('nav-list');
 const favSection = document.getElementById('favourite-section');
 const favList = document.getElementById('favourite-list');
 const aboutMe = document.getElementById('about-me');
+let favListArr = [];
 
+let fav = JSON.parse(localStorage.getItem('favListArr'));
 
-let fav = [];
+// To make a favourites meal array if it doesn't exist in local storage
+if (localStorage.getItem('favListArr') == null) {
+  fav = [...favListArr];
+  // Render the Lists
+  renderList();
+}
+if(localStorage.getItem('favListArr') !== null){
+  renderList();
+}
+console.log('Fav:',fav);
+
 let isFooterOpen = false;
-
+let isMealDescOpen = false;
 
 let isListOpen = false;
 // Handling Clicks on elements
@@ -25,6 +37,13 @@ document.addEventListener('click', handleClicks);
 const blurContainer = document.createElement('div');
 blurContainer.id = 'blur-container';
 
+// To handle the vh issue in mobile phones 
+const setVh = () => {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+setVh();
+window.addEventListener('resize', setVh);
 
 // Function to fetch API
 async function fetchApi(url) {
@@ -114,10 +133,14 @@ function handleClicks(event) {
 
   if (fetchId == 'search-icon' || fetchId == 'search-img') {
     console.log("Search Clicked");
+    mealDesc.style.display = 'none'
     foodContainer.style.display = 'flex';
+    foodPage.style.display = 'block'
+    homePage.style.display = 'block'
+    isMealDescOpen = false;
     setInterval(() => {
       foodPage.style.height = '100vh';
-    },);
+    },1);
     showMeals();
   } else if (fetchId == 'hamburger' && isListOpen == false) {
     isListOpen = true;
@@ -134,7 +157,7 @@ function handleClicks(event) {
     closeFavourites();
   }
 
-  if (fetchClass == "favourite-btn card-btn") {
+  if (fetchClass == "favourite-btn card-btn" || fetchClass == 'meal-btn add-to-fav') {
     let item = document.getElementById(fetchId);
     let index = fav.indexOf(fetchId);
     if (index === -1) {
@@ -143,6 +166,11 @@ function handleClicks(event) {
       console.log(`Added ${fetchId} to fav:`, fav);
       item.innerText = 'Remove From Favourite';
       renderList();
+      if(fetchClass == 'meal-btn add-to-fav'){
+        let btn = document.getElementsByClassName('add-to-fav')[0];
+            console.log("btn: ", btn);
+            btn.innerText = 'Remove From Favourite';
+      }
     } else {
       // Remove the id from the fav array if it is already present
       fav.splice(index, 1);
@@ -150,6 +178,9 @@ function handleClicks(event) {
       console.log("Removed From List");
       renderList();
       showMeals();
+      if(isMealDescOpen == true){
+        showMealDetail(fetchId);
+      }
     }
   }
   if (fetchId == 'contact-me') {
@@ -165,6 +196,7 @@ if(fetchId == 'home'){
   foodPage.style.display = 'none';
   mealDesc.style.display = 'none';
   homePage.style.display = 'block';
+  isMealDescOpen = false;
 }
 
 if(fetchClass =='suggestion-list-item' || fetchClass == 'food-text'){
@@ -214,7 +246,26 @@ function showMeals() {
   for (meal of fetchedData) {
     let li = document.createElement('li');
     li.setAttribute('class', 'food-card');
-    li.innerHTML = `
+    if(fav.includes(meal.idMeal)){
+      // console.log("it exists");
+      // console.log("Inside Fav:",meal.strMeal );
+      // let btn = document.getElementById(meal.idMeal);
+      // console.log("Btn Value: ", btn);
+      // btn.innerText = 'Remove From Favourite'
+      li.innerHTML = `
+                <img src="${meal.strMealThumb}" alt="">
+                <div class="card-details">
+                    <div class="card-heading">
+                    ${meal.strMeal}
+                    </div>
+                    <div class="card-button">
+                        <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(${meal.idMeal})">See Recepie</div>
+                        <div class="favourite-btn card-btn" id= ${meal.idMeal}>Remove from Favourite</div>
+                    </div>
+                </div>
+      `;
+    }else{
+      li.innerHTML = `
                 <img src="${meal.strMealThumb}" alt="">
                 <div class="card-details">
                     <div class="card-heading">
@@ -226,15 +277,11 @@ function showMeals() {
                     </div>
                 </div>
       `;
+    }
+    
     foodContainer.append(li);
 
 
-    if(fav.includes(meal.idMeal)){
-      console.log("it exists");
-      console.log("Inside Fav:",meal.strMeal );
-      let btn = document.getElementById(meal.idMeal);
-      btn.innerText = 'Remove From Favourite'
-    }
   }
   for (let card of foodCard) {
     const cardDetails = card.getElementsByClassName('card-details')[0];
@@ -245,7 +292,7 @@ function showMeals() {
       cardButton.style.display = 'block';
       setTimeout(() => {
         cardButton.style.height = '80px';
-      },);
+      },1);
     });
 
     card.addEventListener('mouseleave', () => {
@@ -264,9 +311,17 @@ function showMealDetail(mealId) {
   mealDesc.style.display = 'flex';
   foodPage.style.display = 'none';
   homePage.style.display = 'none';
+  foodContainer.style.display = 'none';
+  setTimeout(() => {
+    mealDesc.style.height = '100vh';
+  }, 1);
+  isMealDescOpen = true;
   console.log("Fetched Data:", fetchedData);
-  for (meals of fetchedData) {
-    if (mealId == meals.idMeal) {
+
+  let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+  let data = fetchApi(url)
+  data.then(dataArr => {
+  for (meals of dataArr.meals) {
           mealDesc.innerHTML =
           `
           <img id="meal-desc-img" src="${meals.strMealThumb}" alt="">
@@ -306,15 +361,28 @@ function showMealDetail(mealId) {
                 <div id="watch-vid" class="meal-btn">
                     <a href="${meals.strYoutube}">Watch Recepie</a>
                 </div>
-                <div id="add-to-fav" class="meal-btn">
+                <div id=${meals.idMeal} class="meal-btn add-to-fav">
                     Add To Favourite
                 </div>
             </div>
         </div>
           `;
-    }
+          if(fav.includes(meals.idMeal)){
+            console.log("Checking....");
+            console.log("it exists");
+            console.log("Inside Fav:",meal.strMeal );
+            let btn = document.getElementsByClassName('add-to-fav')[0];
+            console.log("btn: ", btn);
+            btn.innerText = 'Remove From Favourite';
+          }
+          if(!fav.includes(meals.idMeal)){
+            console.log("Checking.... NoT");
+            let btn = document.getElementsByClassName('add-to-fav')[0];
+            console.log("btn: ", btn);
+            btn.innerText = 'Add to Favourite';
+          }
   }
-
+  })
 }
 
 // Favourite Section
@@ -328,6 +396,7 @@ function closeFavourites() {
 
 // Rendering List for Favourite
 function renderList() {
+  localStorage.setItem('favListArr', JSON.stringify(fav));
   favList.innerHTML = '';
   for (id of fav) {
     addToFav(id);
@@ -362,11 +431,3 @@ function addToFav(id) {
   })
 }
 
-
-// To handle the vh issue in mobile phones 
-const setVh = () => {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-};
-setVh();
-window.addEventListener('resize', setVh);
