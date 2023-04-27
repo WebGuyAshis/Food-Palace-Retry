@@ -523,6 +523,7 @@ z-index: 1;
     overflow: hidden;
     display: flex;
     z-index: 1;
+    display: none;
 }
 
 #meal-desc::before {
