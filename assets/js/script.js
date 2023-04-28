@@ -145,7 +145,7 @@ function handleClicks(event) {
     homePage.style.display = 'block'
     isMealDescOpen = false;
     setInterval(() => {
-      foodPage.style.height = 'calc(var(--vh, 1vh) * 100)';
+      foodPage.style.height = '100vh';
     }, 1);
     showMeals();
   } else if (fetchId == 'hamburger' && isListOpen == false) {
@@ -309,7 +309,7 @@ function showMealDetail(mealId) {
   homePage.style.display = 'none';
   foodContainer.style.display = 'none';
   setTimeout(() => {
-    mealDesc.style.height = 'calc(var(--vh, 1vh) * 100)';
+    mealDesc.style.height = '100vh';
   }, 1);
   isMealDescOpen = true;
   let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
@@ -424,7 +424,6 @@ function addToFav(id) {
     }
   })
 }
-
 
 // To handle the vh issue in mobile phones 
 const setVh = () => {
