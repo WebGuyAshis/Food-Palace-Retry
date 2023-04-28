@@ -36,17 +36,41 @@ body {
     z-index: 1;
     bottom: 3vh;
     left: 10px;
+    text-shadow: 2px 2px rgb(67, 67, 67);
+    text-decoration: none;
 }
 
 #logo span {
     color: orangered;
     font-family: 'ResplendentBrush';
 }
+.site-logo{
+    font-family: 'ResplendentBrush';
+    font-size: 35px;
+    color: rgb(182, 182, 182);
+    display: flex;
+    text-decoration: none;
+}
+.site-logo-first{
+    color: orangered;
+    font-family: 'ResplendentBrush';
+}
+.site-img{
+    height: 7vh;
+    width: 7vh;
+    overflow: hidden;
+    /* background-color: #5aff8c; */
+}
+.site-img img{
+    height: 100%;
+    width: 100%;
+    object-fit:cover ;
+}
 
 /* Styling Navbar */
 #nav {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     height: 7vh;
     background: linear-gradient(to right, rgb(0, 0, 0, 0.2), rgb(46, 46, 46, 0.2));
     width: 100vw;
@@ -98,6 +122,10 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-right: 15px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .authenticate {
@@ -251,6 +279,22 @@ body {
 }
 
 .suggestion-list-item:hover {
+    transition: 0.1s;
+    background-color: rgb(0, 0, 0, 0.3);
+}
+
+.no-list-item {
+    color: rgb(209, 209, 209);
+    overflow: hidden;
+    background: rgba(98, 98, 98, 0.7);
+    display: flex;
+    border-bottom: 0.5px solid rgb(43, 43, 43, 0.7);
+    align-items: center;
+    padding: 2px;
+    transition: 0.1s;
+}
+
+.no-list-item:hover {
     transition: 0.1s;
     background-color: rgb(0, 0, 0, 0.3);
 }

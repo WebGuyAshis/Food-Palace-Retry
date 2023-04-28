@@ -110,10 +110,10 @@ function suggestions(url) {
     else {
       suggestionList.innerHTML = '';
       let li = document.createElement('li');
-      li.setAttribute('class', 'suggestion-list-item');
+      li.setAttribute('class', 'no-list-item');
       li.innerHTML =
         `
-              <div class="food-text">
+              <div style="margin-left: 10px">
                   Meal Not Found... 😩
               </div>
               `;
@@ -144,7 +144,7 @@ function handleClicks(event) {
     closeSearchBar();
   }
 
-  if (fetchId == 'search-icon' || fetchId == 'search-img') {
+  if (fetchId == 'search-icon' || fetchId == 'search-img' && fetchedData.length > 0) {
     // Showing Meals
     mealDesc.style.display = 'none'
     foodContainer.style.display = 'flex';
@@ -392,7 +392,9 @@ function openFavourites() {
 
 function closeFavourites() {
   favSection.style.width = '0vw'
-  document.body.removeChild(blurrContainer);
+  if(document.querySelector('.blurrContainer')){
+    document.body.removeChild(blurrContainer);
+  }
   blurrContainer.classList.remove('blur');
 }
 
