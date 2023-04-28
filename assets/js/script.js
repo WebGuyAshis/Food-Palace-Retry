@@ -1,3 +1,4 @@
+// Fetching Ids/ Classes to manipulate 
 const searchBarContainer = document.getElementById('search-bar-container');
 const searchBar = document.getElementById('search-bar');
 const suggestionList = document.getElementById('suggestion-list');
@@ -13,6 +14,7 @@ const favList = document.getElementById('favourite-list');
 const aboutMe = document.getElementById('about-me');
 let favListArr = [];
 
+// If there exists Fav list in Local Storage then values will be assigned to fav
 let fav = JSON.parse(localStorage.getItem('favListArr'));
 
 // To make a favourites meal array if it doesn't exist in local storage
@@ -21,15 +23,30 @@ if (localStorage.getItem('favListArr') == null) {
   // Render the Lists
   renderList();
 }
-if(localStorage.getItem('favListArr') !== null){
+if (localStorage.getItem('favListArr') !== null) {
   renderList();
 }
-console.log('Fav:',fav);
 
 let isFooterOpen = false;
 let isMealDescOpen = false;
-
 let isListOpen = false;
+
+// Izitoast notification
+function showToastSuccess(msg) {
+  iziToast.success({
+    title:msg,
+    position: 'topCenter',
+    timeout: 2000, // time in milliseconds
+});
+}
+function showToastWarning(msg) {
+  iziToast.warning({
+    title:msg,
+    position: 'topCenter',
+    timeout: 2000, // time in milliseconds
+});
+}
+
 // Handling Clicks on elements
 document.addEventListener('click', handleClicks);
 
@@ -49,24 +66,25 @@ window.addEventListener('resize', setVh);
 async function fetchApi(url) {
   let response = await fetch(url);
   let data = await response.json();
-  // console.log(data);
   return data;
 }
+
 // Reading inputs on Search Bar
 searchBar.addEventListener('input', function (event) {
   let searchVal = event.target.value;
-  // console.log("Search Word", searchVal);
   if (searchBar.value.trim() === "") {
-    // console.log("Empty");
     removeSuggestions();
     return;
   }
   let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchVal}`;
+  //  Passing the url to fetch Api and show suggestions accordingly
   fetchApi(url);
   suggestions(url);
   showSuggestion();
 });
+
 let fetchedData = [];
+// Showing Suggestions according to search Data
 function suggestions(url) {
   let data = fetchApi(url);
   data.then(data => {
@@ -76,7 +94,7 @@ function suggestions(url) {
       for (let i = 0; i < 5; i++) {
         let li = document.createElement('li');
         li.setAttribute('class', 'suggestion-list-item');
-        li.setAttribute('data-mealId',fetchedData[i].idMeal)
+        li.setAttribute('data-mealId', fetchedData[i].idMeal)
         li.innerHTML =
           `
                   <div class="food-img" data-mealId=${fetchedData[i].idMeal}>
@@ -103,10 +121,11 @@ function suggestions(url) {
     }
   })
 }
+// Calling to Show Suggestion
 function showSuggestion() {
   suggestionList.style.display = 'block';
 }
-
+// Calling t remove Suggestion
 function removeSuggestions() {
   suggestionList.style.display = 'none';
 }
@@ -117,22 +136,16 @@ function handleClicks(event) {
   let fetchId = target.id;
   let fetchClass = target.classList.value;
 
-  console.log("Target:", target);
-  console.log("Id:", fetchId);
-  console.log("Fetch Class: ", fetchClass);
-
   // Opening Search Bar
   if (fetchId == 'search-meal-btn' || fetchId == 'search-btn') {
-    console.log('Open Search Meal Bar');
     openSearchBar();
   }
   else if (fetchId != 'search-bar' && document.body.contains(blurContainer)) {
-    console.log('Close Search Meal Bar');
     closeSearchBar();
   }
 
   if (fetchId == 'search-icon' || fetchId == 'search-img') {
-    console.log("Search Clicked");
+    // Showing Meals
     mealDesc.style.display = 'none'
     foodContainer.style.display = 'flex';
     foodPage.style.display = 'block'
@@ -140,7 +153,7 @@ function handleClicks(event) {
     isMealDescOpen = false;
     setInterval(() => {
       foodPage.style.height = '100vh';
-    },1);
+    }, 1);
     showMeals();
   } else if (fetchId == 'hamburger' && isListOpen == false) {
     isListOpen = true;
@@ -149,9 +162,8 @@ function handleClicks(event) {
     isListOpen = false;
     navList.style.left = "-200px";
   }
-
+  // Showing Favourite Section
   if (fetchId == 'Favourites') {
-    console.log("Open Favourite Section");
     openFavourites();
   } else if (fetchId == 'close-fav') {
     closeFavourites();
@@ -160,49 +172,47 @@ function handleClicks(event) {
   if (fetchClass == "favourite-btn card-btn" || fetchClass == 'meal-btn add-to-fav') {
     let item = document.getElementById(fetchId);
     let index = fav.indexOf(fetchId);
+    // Adding to Fav
     if (index === -1) {
-      console.log("Adding to fav");
       fav.push(fetchId);
-      console.log(`Added ${fetchId} to fav:`, fav);
+      showToastSuccess(`Added to Favourites`);
       item.innerText = 'Remove From Favourite';
       renderList();
-      if(fetchClass == 'meal-btn add-to-fav'){
+      if (fetchClass == 'meal-btn add-to-fav') {
         let btn = document.getElementsByClassName('add-to-fav')[0];
-            console.log("btn: ", btn);
-            btn.innerText = 'Remove From Favourite';
+        btn.innerText = 'Remove From Favourite';
       }
     } else {
       // Remove the id from the fav array if it is already present
       fav.splice(index, 1);
-      console.log(`Removed ${fetchId} from fav:`, fav);
-      console.log("Removed From List");
+      showToastWarning("Removed From Favourite")
       renderList();
       showMeals();
-      if(isMealDescOpen == true){
+      if (isMealDescOpen == true) {
         showMealDetail(fetchId);
       }
     }
   }
+  // Opening/Closing Footer Section
   if (fetchId == 'contact-me') {
     openFooter();
-}
-else if (fetchId != 'footer' && isFooterOpen) {
-    console.log('inside close');
+  }
+  else if (fetchId != 'footer' && isFooterOpen) {
     closeFooter();
-}
-
-if(fetchId == 'home'){
-  closeFavourites();
-  foodPage.style.display = 'none';
-  mealDesc.style.display = 'none';
-  homePage.style.display = 'block';
-  isMealDescOpen = false;
-}
-
-if(fetchClass =='suggestion-list-item' || fetchClass == 'food-text'){
-  let mealId = event.target.getAttribute("data-mealId");
-  showMealDetail(mealId);
-}
+  }
+  // Home Page
+  if (fetchId == 'home') {
+    closeFavourites();
+    foodPage.style.display = 'none';
+    mealDesc.style.display = 'none';
+    homePage.style.display = 'block';
+    isMealDescOpen = false;
+  }
+// Showing Meal Description/Recepie
+  if (fetchClass == 'suggestion-list-item' || fetchClass == 'food-text') {
+    let mealId = event.target.getAttribute("data-mealId");
+    showMealDetail(mealId);
+  }
 }
 
 // Opening Search Bar
@@ -217,7 +227,7 @@ function closeSearchBar() {
   document.body.removeChild(blurContainer);
   blurContainer.classList.remove('blur');
 }
-
+// Opening Footer
 function openFooter() {
   footer.style.height = '40vh';
   footer.style.borderTopLeftRadius = '50%';
@@ -228,7 +238,7 @@ function openFooter() {
   aboutMe.style.display = 'block'
   document.getElementById('logo-first').style.color = 'green';
 }
-
+// Closing Footer
 function closeFooter() {
   footer.style.height = '3vh';
   footer.style.borderRadius = '0';
@@ -246,12 +256,7 @@ function showMeals() {
   for (meal of fetchedData) {
     let li = document.createElement('li');
     li.setAttribute('class', 'food-card');
-    if(fav.includes(meal.idMeal)){
-      // console.log("it exists");
-      // console.log("Inside Fav:",meal.strMeal );
-      // let btn = document.getElementById(meal.idMeal);
-      // console.log("Btn Value: ", btn);
-      // btn.innerText = 'Remove From Favourite'
+    if (fav.includes(meal.idMeal)) {
       li.innerHTML = `
                 <img src="${meal.strMealThumb}" alt="">
                 <div class="card-details">
@@ -264,7 +269,7 @@ function showMeals() {
                     </div>
                 </div>
       `;
-    }else{
+    } else {
       li.innerHTML = `
                 <img src="${meal.strMealThumb}" alt="">
                 <div class="card-details">
@@ -278,7 +283,7 @@ function showMeals() {
                 </div>
       `;
     }
-    
+
     foodContainer.append(li);
 
 
@@ -286,13 +291,12 @@ function showMeals() {
   for (let card of foodCard) {
     const cardDetails = card.getElementsByClassName('card-details')[0];
     const cardButton = card.getElementsByClassName('card-button')[0];
-    // console.log("Inside Hover Effect");
     card.addEventListener('mouseenter', () => {
       cardDetails.style.display = 'block';
       cardButton.style.display = 'block';
       setTimeout(() => {
         cardButton.style.height = '80px';
-      },1);
+      }, 1);
     });
 
     card.addEventListener('mouseleave', () => {
@@ -307,7 +311,6 @@ function showMeals() {
 
 // Showing Meal Details/recepie
 function showMealDetail(mealId) {
-  console.log("Meal ID = ",mealId);
   mealDesc.style.display = 'flex';
   foodPage.style.display = 'none';
   homePage.style.display = 'none';
@@ -316,14 +319,12 @@ function showMealDetail(mealId) {
     mealDesc.style.height = '100vh';
   }, 1);
   isMealDescOpen = true;
-  console.log("Fetched Data:", fetchedData);
-
   let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
   let data = fetchApi(url)
   data.then(dataArr => {
-  for (meals of dataArr.meals) {
-          mealDesc.innerHTML =
-          `
+    for (meals of dataArr.meals) {
+      mealDesc.innerHTML =
+        `
           <img id="meal-desc-img" src="${meals.strMealThumb}" alt="">
         <div id="left-desc">
             <div id="meal-img">
@@ -367,31 +368,32 @@ function showMealDetail(mealId) {
             </div>
         </div>
           `;
-          if(fav.includes(meals.idMeal)){
-            console.log("Checking....");
-            console.log("it exists");
-            console.log("Inside Fav:",meal.strMeal );
-            let btn = document.getElementsByClassName('add-to-fav')[0];
-            console.log("btn: ", btn);
-            btn.innerText = 'Remove From Favourite';
-          }
-          if(!fav.includes(meals.idMeal)){
-            console.log("Checking.... NoT");
-            let btn = document.getElementsByClassName('add-to-fav')[0];
-            console.log("btn: ", btn);
-            btn.innerText = 'Add to Favourite';
-          }
-  }
+      if (fav.includes(meals.idMeal)) {
+        let btn = document.getElementsByClassName('add-to-fav')[0];
+        btn.innerText = 'Remove From Favourite';
+      }
+      if (!fav.includes(meals.idMeal)) {
+        let btn = document.getElementsByClassName('add-to-fav')[0];
+        btn.innerText = 'Add to Favourite';
+      }
+    }
   })
 }
-
+// For blurred backGround
+const blurrContainer = document.createElement('div');
+blurrContainer.id = 'blurr-container';
 // Favourite Section
 function openFavourites() {
   favSection.style.width = '350px';
+  document.body.appendChild(blurrContainer);
+  blurrContainer.classList.add('blur');
+  renderList();
 }
 
 function closeFavourites() {
   favSection.style.width = '0vw'
+  document.body.removeChild(blurrContainer);
+  blurrContainer.classList.remove('blur');
 }
 
 // Rendering List for Favourite
@@ -407,9 +409,7 @@ function addToFav(id) {
   let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
   let data = fetchApi(url)
   data.then(dataArr => {
-    console.log("Fav Arr", dataArr.meals);
     for (meal of dataArr.meals) {
-      // if (meal.idMeal == id) {
       let li = document.createElement('li');
       li.setAttribute('class', 'favourite-list-item');
       li.innerHTML =
@@ -427,7 +427,6 @@ function addToFav(id) {
               `;
       favList.append(li);
     }
-    // }
   })
 }
 
