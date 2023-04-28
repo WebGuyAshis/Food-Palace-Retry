@@ -585,7 +585,7 @@ z-index: 1;
     overflow: hidden;
     border-radius: 10px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 10vh;
 }
 #meal-img img{
     height: 100%;
@@ -621,7 +621,7 @@ z-index: 1;
     font-size: 55px;
     width: 90%;
     margin:auto;
-    margin-top: 40px;
+    margin-top: 10vh;
 }
 #recepie{
     color: rgb(207, 207, 207);
