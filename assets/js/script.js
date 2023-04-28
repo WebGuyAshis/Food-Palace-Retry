@@ -55,12 +55,12 @@ const blurContainer = document.createElement('div');
 blurContainer.id = 'blur-container';
 
 // To handle the vh issue in mobile phones 
-const setVh = () => {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-};
-setVh();
-window.addEventListener('resize', setVh);
+// const setVh = () => {
+//   let vh = window.innerHeight * 0.01;
+//   document.documentElement.style.setProperty('--vh', `${vh}px`);
+// };
+// setVh();
+// window.addEventListener('resize', setVh);
 
 // Function to fetch API
 async function fetchApi(url) {
@@ -432,3 +432,15 @@ function addToFav(id) {
   })
 }
 
+const setVh = () => {
+  // Get the viewport height and subtract the height of the address bar
+  let vh = window.innerHeight * 0.01;
+  let addressBarHeight = document.documentElement.clientHeight - window.innerHeight;
+  vh -= addressBarHeight * 0.01;
+
+  // Set the --vh custom property to the calculated value
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+// Call setVh on page load and window resize
+window.addEventListener('load', setVh);
+window.addEventListener('resize', setVh);
