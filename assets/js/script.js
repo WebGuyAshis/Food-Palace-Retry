@@ -59,18 +59,8 @@ const setVh = () => {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
-
-// Call setVh function on page load and orientationchange event
-window.addEventListener('load', setVh);
-window.addEventListener('orientationchange', setVh);
-
-// Call setVh function on resize event, but with a delay to account for zooming
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(setVh, 100);
-});
-
+setVh();
+window.addEventListener('resize', setVh);
 
 // Function to fetch API
 async function fetchApi(url) {
@@ -162,7 +152,7 @@ function handleClicks(event) {
     homePage.style.display = 'block'
     isMealDescOpen = false;
     setInterval(() => {
-      foodPage.style.height = '100vh';
+      foodPage.style.height = 'calc(var(--vh, 1vh) * 100)';
     }, 1);
     showMeals();
   } else if (fetchId == 'hamburger' && isListOpen == false) {
@@ -326,7 +316,7 @@ function showMealDetail(mealId) {
   homePage.style.display = 'none';
   foodContainer.style.display = 'none';
   setTimeout(() => {
-    mealDesc.style.height = '100vh';
+    mealDesc.style.height = 'calc(var(--vh, 1vh) * 100)';
   }, 1);
   isMealDescOpen = true;
   let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
