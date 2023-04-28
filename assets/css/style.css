@@ -423,7 +423,7 @@ body {
 #food-container {
     display: none;
     flex-wrap: wrap;
-    height: 93vh;
+    height: 90vh;
     width: 100vw;
     overflow-y: scroll;
     align-content: flex-start;
