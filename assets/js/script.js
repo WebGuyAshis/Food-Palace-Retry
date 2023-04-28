@@ -59,8 +59,18 @@ const setVh = () => {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
-setVh();
-window.addEventListener('resize', setVh);
+
+// Call setVh function on page load and orientationchange event
+window.addEventListener('load', setVh);
+window.addEventListener('orientationchange', setVh);
+
+// Call setVh function on resize event, but with a delay to account for zooming
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(setVh, 100);
+});
+
 
 // Function to fetch API
 async function fetchApi(url) {

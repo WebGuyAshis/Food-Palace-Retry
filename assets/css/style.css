@@ -819,6 +819,9 @@ footer {
         width: 95%;
         justify-content: center;
     }
+    #authentication-btn{
+        display: none;
+    }
     footer{
         font-size: 12px;
     }
@@ -906,6 +909,9 @@ footer {
     .meal-desc-buttons{
         width: 95%;
         justify-content: center;
+    }
+    #authentication-btn{
+        display: none;
     }
 }
 
