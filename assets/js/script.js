@@ -54,13 +54,6 @@ document.addEventListener('click', handleClicks);
 const blurContainer = document.createElement('div');
 blurContainer.id = 'blur-container';
 
-// To handle the vh issue in mobile phones 
-// const setVh = () => {
-//   let vh = window.innerHeight * 0.01;
-//   document.documentElement.style.setProperty('--vh', `${vh}px`);
-// };
-// setVh();
-// window.addEventListener('resize', setVh);
 
 // Function to fetch API
 async function fetchApi(url) {
@@ -98,25 +91,25 @@ function suggestions(url) {
         li.innerHTML =
           `
                   <div class="food-img" data-mealId=${fetchedData[i].idMeal}>
-                      <img src="${fetchedData[i].strMealThumb}" alt="">
+                  <img src="${fetchedData[i].strMealThumb}" alt="">
                   </div>
                   <div class="food-text" data-mealId=${fetchedData[i].idMeal}>
-                      ${fetchedData[i].strMeal}
+                  ${fetchedData[i].strMeal}
                   </div>
                   `;
-        suggestionList.append(li);
-      }
-    }
-    else {
+                  suggestionList.append(li);
+                }
+              }
+              else {
       suggestionList.innerHTML = '';
       let li = document.createElement('li');
       li.setAttribute('class', 'no-list-item');
       li.innerHTML =
-        `
-              <div style="margin-left: 10px">
-                  Meal Not Found... 😩
-              </div>
-              `;
+      `
+      <div style="margin-left: 10px">
+      Meal Not Found... 😩
+      </div>
+      `;
       suggestionList.append(li);
     }
   })
@@ -135,7 +128,7 @@ function handleClicks(event) {
   let target = event.target;
   let fetchId = target.id;
   let fetchClass = target.classList.value;
-
+  
   // Opening Search Bar
   if (fetchId == 'search-meal-btn' || fetchId == 'search-btn') {
     openSearchBar();
@@ -143,7 +136,7 @@ function handleClicks(event) {
   else if (fetchId != 'search-bar' && document.body.contains(blurContainer)) {
     closeSearchBar();
   }
-
+  
   if (fetchId == 'search-icon' || fetchId == 'search-img' && fetchedData.length > 0) {
     // Showing Meals
     mealDesc.style.display = 'none'
@@ -208,7 +201,7 @@ function handleClicks(event) {
     homePage.style.display = 'block';
     isMealDescOpen = false;
   }
-// Showing Meal Description/Recepie
+  // Showing Meal Description/Recepie
   if (fetchClass == 'suggestion-list-item' || fetchClass == 'food-text') {
     let mealId = event.target.getAttribute("data-mealId");
     showMealDetail(mealId);
@@ -258,37 +251,37 @@ function showMeals() {
     li.setAttribute('class', 'food-card');
     if (fav.includes(meal.idMeal)) {
       li.innerHTML = `
-                <img src="${meal.strMealThumb}" alt="">
-                <div class="card-details">
+      <img src="${meal.strMealThumb}" alt="">
+      <div class="card-details">
                     <div class="card-heading">
                     ${meal.strMeal}
                     </div>
                     <div class="card-button">
-                        <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(${meal.idMeal})">See Recepie</div>
-                        <div class="favourite-btn card-btn" id= ${meal.idMeal}>Remove from Favourite</div>
+                    <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(${meal.idMeal})">See Recepie</div>
+                    <div class="favourite-btn card-btn" id= ${meal.idMeal}>Remove from Favourite</div>
                     </div>
-                </div>
-      `;
-    } else {
-      li.innerHTML = `
-                <img src="${meal.strMealThumb}" alt="">
-                <div class="card-details">
+                    </div>
+                    `;
+                  } else {
+                    li.innerHTML = `
+                    <img src="${meal.strMealThumb}" alt="">
+                    <div class="card-details">
                     <div class="card-heading">
                     ${meal.strMeal}
                     </div>
                     <div class="card-button">
-                        <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(${meal.idMeal})">See Recepie</div>
+                    <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(${meal.idMeal})">See Recepie</div>
                         <div class="favourite-btn card-btn" id= ${meal.idMeal}>Add to Favourite</div>
-                    </div>
-                </div>
-      `;
-    }
-
-    foodContainer.append(li);
-
-
-  }
-  for (let card of foodCard) {
+                        </div>
+                        </div>
+                        `;
+                      }
+                      
+                      foodContainer.append(li);
+                      
+                      
+                    }
+                    for (let card of foodCard) {
     const cardDetails = card.getElementsByClassName('card-details')[0];
     const cardButton = card.getElementsByClassName('card-button')[0];
     card.addEventListener('mouseenter', () => {
@@ -304,7 +297,7 @@ function showMeals() {
       setTimeout(() => {
         cardButton.style.display = 'none';
       }, 300);
-
+      
     });
   }
 }
@@ -324,54 +317,54 @@ function showMealDetail(mealId) {
   data.then(dataArr => {
     for (meals of dataArr.meals) {
       mealDesc.innerHTML =
-        `
-          <img id="meal-desc-img" src="${meals.strMealThumb}" alt="">
-        <div id="left-desc">
-            <div id="meal-img">
-                <img src="${meals.strMealThumb}" alt="">
-            </div>
-            <div id="food-desc">
-                <div id="type">Type:
-                    <span id="meal-type">
-                        ${meals.strArea}
-                    </span>
-                </div>
-
-                <div id="ingredients">
-                    Ingredients:
-                    <span id="ingredients-type">
-                        ${meals.strIngredient1},
-                        ${meals.strIngredient2},
-                        ${meals.strIngredient3},
-                        ${meals.strIngredient4},
-                        ${meals.strIngredient5},
-                        ${meals.strIngredient6},
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div id="right-desc">
-            <div id="meal-heading">
-            ${meals.strMeal}
-            </div>
-
-            <div id="recepie">
-            ${meals.strInstructions}
+      `
+      <img id="meal-desc-img" src="${meals.strMealThumb}" alt="">
+      <div id="left-desc">
+      <div id="meal-img">
+      <img src="${meals.strMealThumb}" alt="">
+      </div>
+      <div id="food-desc">
+      <div id="type">Type:
+      <span id="meal-type">
+      ${meals.strArea}
+      </span>
+      </div>
+      
+      <div id="ingredients">
+      Ingredients:
+      <span id="ingredients-type">
+      ${meals.strIngredient1},
+      ${meals.strIngredient2},
+      ${meals.strIngredient3},
+      ${meals.strIngredient4},
+      ${meals.strIngredient5},
+      ${meals.strIngredient6},
+      </span>
+      </div>
+      </div>
+      </div>
+      <div id="right-desc">
+      <div id="meal-heading">
+      ${meals.strMeal}
+      </div>
+      
+      <div id="recepie">
+      ${meals.strInstructions}
             </div>
             <div class="meal-desc-buttons">
-                <div id="watch-vid" class="meal-btn">
-                    <a href="${meals.strYoutube}">Watch Recepie</a>
-                </div>
-                <div id=${meals.idMeal} class="meal-btn add-to-fav">
-                    Add To Favourite
-                </div>
+            <div id="watch-vid" class="meal-btn">
+            <a href="${meals.strYoutube}">Watch Recepie</a>
             </div>
-        </div>
-          `;
-      if (fav.includes(meals.idMeal)) {
-        let btn = document.getElementsByClassName('add-to-fav')[0];
-        btn.innerText = 'Remove From Favourite';
-      }
+            <div id=${meals.idMeal} class="meal-btn add-to-fav">
+            Add To Favourite
+            </div>
+            </div>
+            </div>
+            `;
+            if (fav.includes(meals.idMeal)) {
+              let btn = document.getElementsByClassName('add-to-fav')[0];
+              btn.innerText = 'Remove From Favourite';
+            }
       if (!fav.includes(meals.idMeal)) {
         let btn = document.getElementsByClassName('add-to-fav')[0];
         btn.innerText = 'Add to Favourite';
@@ -415,32 +408,28 @@ function addToFav(id) {
       let li = document.createElement('li');
       li.setAttribute('class', 'favourite-list-item');
       li.innerHTML =
-        `
-                  <img src="${meal.strMealThumb}" alt="">
-                  <div class="card-details">
-                      <div class="card-heading">
-                      ${meal.strMeal}
-                      </div>
-                      <div class="fav-card-button">
-                          <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(${meal.idMeal})">See Recepie</div>
+      `
+      <img src="${meal.strMealThumb}" alt="">
+      <div class="card-details">
+      <div class="card-heading">
+      ${meal.strMeal}
+      </div>
+      <div class="fav-card-button">
+      <div class="recepie card-btn" data-mealId=${meal.idMeal} onclick="showMealDetail(${meal.idMeal})">See Recepie</div>
                           <div class="favourite-btn card-btn" id= ${meal.idMeal}>Remove from Favourite</div>
-                      </div>
+                          </div>
                   </div>
-              `;
+                  `;
       favList.append(li);
     }
   })
 }
 
-const setVh = () => {
-  // Get the viewport height and subtract the height of the address bar
-  let vh = window.innerHeight * 0.01;
-  let addressBarHeight = document.documentElement.clientHeight - window.innerHeight;
-  vh -= addressBarHeight * 0.01;
 
-  // Set the --vh custom property to the calculated value
+// To handle the vh issue in mobile phones 
+const setVh = () => {
+  let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
-// Call setVh on page load and window resize
-window.addEventListener('load', setVh);
+setVh();
 window.addEventListener('resize', setVh);
