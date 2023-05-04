@@ -347,11 +347,7 @@ function showMealDetail(mealId) {
       <div id="meal-heading">
       ${meals.strMeal}
       </div>
-      
-      <div id="recepie">
-      ${meals.strInstructions}
-            </div>
-            <div class="meal-desc-buttons">
+      <div class="meal-desc-buttons">
             <div id="watch-vid" class="meal-btn">
             <a href="${meals.strYoutube}">Watch Recepie</a>
             </div>
@@ -359,6 +355,10 @@ function showMealDetail(mealId) {
             Add To Favourite
             </div>
             </div>
+      <div id="recepie">
+      ${meals.strInstructions}
+            </div>
+            
             </div>
             `;
             if (fav.includes(meals.idMeal)) {
