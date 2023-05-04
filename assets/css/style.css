@@ -154,8 +154,8 @@ body {
     top: 0;
     left: 0;
     background-image: url('../images/food-4k.jpg');
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     background-size: cover;
     z-index: -1;
 }
@@ -425,7 +425,7 @@ body {
 #food-container {
     display: none;
     flex-wrap: wrap;
-    height: 90vh;
+    height: calc(90 * var(--vh));
     width: 100vw;
     overflow-y: scroll;
     align-content: flex-start;
