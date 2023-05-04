@@ -203,6 +203,7 @@ body {
     overflow: hidden;
     z-index: 12;
     width: 42vw;
+    max-width: 450px;
 }
 #blur-container {
     position: absolute;
@@ -238,6 +239,7 @@ body {
 
 #search {
     width: 42vw;
+    max-width: 450px;
     height: 40px;
     display: flex;
 }
