@@ -5,6 +5,9 @@
     font-family: sans-serif;
     scroll-behavior: smooth;
 }
+:root {
+    --vh: calc(var(--vh, 1vh) * 1);
+  }
 
 /* Custom Fonts */
 @font-face {
@@ -59,7 +62,6 @@ body {
     height: 7vh;
     width: 7vh;
     overflow: hidden;
-    /* background-color: #5aff8c; */
 }
 .site-img img{
     height: 100%;
@@ -542,7 +544,7 @@ z-index: 1;
 
 /* MEal Recepie */
 #meal-desc {
-    height: 0vh;
+    height: 100vh;
     width: 100vw;
     overflow: hidden;
     display: flex;
@@ -556,8 +558,8 @@ z-index: 1;
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     background: linear-gradient(rgb(0, 0, 0, 0.8), black);
     z-index: -1;
 }

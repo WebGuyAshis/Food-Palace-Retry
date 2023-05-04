@@ -308,9 +308,7 @@ function showMealDetail(mealId) {
   foodPage.style.display = 'none';
   homePage.style.display = 'none';
   foodContainer.style.display = 'none';
-  setTimeout(() => {
-    mealDesc.style.height = '100vh';
-  }, 1);
+
   isMealDescOpen = true;
   let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
   let data = fetchApi(url)
