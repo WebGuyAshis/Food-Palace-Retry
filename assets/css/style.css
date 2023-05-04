@@ -202,6 +202,7 @@ body {
     border-radius: 10px;
     overflow: hidden;
     z-index: 12;
+    width: 42vw;
 }
 #blur-container {
     position: absolute;
@@ -236,7 +237,7 @@ body {
   }
 
 #search {
-    width: 400px;
+    width: 42vw;
     height: 40px;
     display: flex;
 }
@@ -245,14 +246,14 @@ body {
     height: 100%;
     outline: none;
     border: none;
-    width: 340px;
+    width: 85%;
     padding-left: 20px;
     font-size: 20px;
 }
 
 #search-icon {
     height: 100%;
-    width: 60px;
+    width: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -282,7 +283,7 @@ body {
 
 .suggestion-list-item:hover {
     transition: 0.1s;
-    background-color: rgb(0, 0, 0, 0.3);
+    background: rgb(0, 0, 0, 0.3);
 }
 
 .no-list-item {
@@ -303,7 +304,7 @@ body {
 
 .food-img {
     height: 38px;
-    width: 38px;
+    min-width: 38px;
     overflow: hidden;
     border-radius: 4px;
 }
@@ -311,6 +312,7 @@ body {
 .food-img img {
     object-fit: cover;
     height: 100%;
+    width: 100%;
 }
 
 .food-text {
