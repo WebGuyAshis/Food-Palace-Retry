@@ -9,6 +9,9 @@ The app features a cool-looking popup footer that displays various social media 
 
 Overall, the meal search app is a useful tool for anyone looking for new and interesting meal ideas, and is a great example of how HTML, CSS, and JavaScript can be used to create a dynamic web application.
 
+## API Source
+https://www.themealdb.com/api.php
+
 ## Authors
 https://github.com/WebGuyAshis/
 
